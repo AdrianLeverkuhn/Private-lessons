@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/psi.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!--Funkcije za podesavanje ocena preporucenih predavaca na responzivnoj stranici-->
+	<script>
+	$( window ).resize(function() {
+ 			 $( ".grade" ).each(function() {
+ 			 	$(this).width($(this).siblings(".tut-image").first().width());
+ 			 	var a = parseInt($(this).siblings(".tut-image").first().css("margin-left"));
+ 			 	$(this).css("left",15 + a + "px");
+ 			 });
+		});
+
+	$( window ).load(function() {
+ 			 $( ".grade" ).each(function() {
+ 			 	$(this).width($(this).siblings(".tut-image").first().width());
+ 			 	var a = parseInt($(this).siblings(".tut-image").first().css("margin-left"));
+ 			 	$(this).css("left",15 + a + "px");
+ 			 });
+		});
+	</script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<!-- Glavni meni-->
+	<div class="nav navbar-default navbar-fixed-top" > <!--Navigacija-->
+		<div class="container" > <!--Kontejner koji sadrzi oba reda i logo -->
+			<div class="col-sm-10 col-sm-offset-1 menu-body" ><!--Telo menija. Zauzima kolone 2-11
+			<!--Logo, buttons-->
+			<div class="navbar-header col-sm-2"> <!--Logo i dugmad za prikaz u mobilnom rezimu-->
+				
+				<!--Dugme za prikaz prijave-->
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-align-justify"></span>
+				</button>
+				<!--Dugme za prikaz pretrage-->
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+				<!--Logo-->
+				<div class="navbar-brand"><a href = "index.html"><img src="img/sloth2.png" class="sloth"></a></div>
+
+			</div>
+			
+
+			<!-- Linkovi za prijavu i registraciju -->
+			<!-- Ako je korisnik ulogovan, zameniti ih sa boldovanim nazivom korisnika koji vodi na profilnu stranu i linkom za odjavu-->
+			<div class="col-sm-9">
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class=" col-sm-offset-7 col-sm-7 col-md-offset-8 col-lg-offset-8">
+						<ul class="nav navbar-nav logreg">
+							<li><a href="login.html">Prijava</a></li>
+							<li><a href="register.html">Registracija</a></li>
+							
+						</ul>
+					</div>
+				</div>
+
+				<!-- Deo menija za pretragu -->
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+						<form class="form-inline">
+
+							<div class="form-group col-sm-5 col-md-7">
+								<label class="sr-only" for="searchBoxMain">Traži</label>
+								<input  type="search" class="form-control" id="searchBoxMain" placeholder="Traži">
+							</div>
+
+
+							<div class="col-sm-4 col-md-3">
+								<select  class="form-control select-city">
+								<!-- Popuniti u PHP-u odgovarajucim gradovima -->
+									<option>Beograd</option>
+									<option>Novi Sad</option>
+									<option>Niš</option>
+									<option>Kragujevac</option>
+								</select>
+							</div>
+
+							<div class="col-sm-3 col-md-2">
+								<button id="menuButton" type="submit" class="btn btn-primary btn-block">Traži</button>
+							</div>
+
+						</form>
+							
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+<!--menu end-->
+<!-- Slideshow na vrhu strane. Kada se napravi tekst oglasa, linkovi vode do .php datoteke za pretragu. Npr. CAE, CPE ce pretrazivati za engleski jezik-->
+<div class="container no-padding">
+<div class="col-sm-12">
+<div class="row">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+
+
+      <div class="carousel-inner" role="listbox"><!--Novi slajdovi se dodaju tako sto se struktura ispod prekopira i postave slika, naslov, tekst i link -->
+
+        <div class="item active">
+          <img class="first-slide center-block" src="img/slide1.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Privatni časovi iz engleskog A1-C2<br/>Spremanje za CAE, CPE, TOEFL, IELTS</h1>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Saznaj više</a></p><!--Ovaj link treba menjati-->
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img class="second-slide center-block" src="img/slide2.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Škola gitare za početnike</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut commodi neque nesciunt error deleniti, natus harum architecto laudantium ab, rem consequatur! Fugit rem minima nihil doloremque numquam, impedit debitis reiciendis?</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Saznaj više</a></p><!--I ovaj link treba menjati-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.carousel -->
+    </div>
+    </div>
+</div>
+
+<!-- Predavaci se dohvataju iz baze. Biraju se oni sa najvisim ocenama/pretplatom -->
+<div class="predavaci container">
+<div class="row"><h2 class="center-block">Preporučeni predavači</h2></div>
+	<div class="row">
+
+
+		<div class="col-sm-4">
+		<a class="link-tutor" href="#">
+			<img  src="img/zivan.jpg" class="tut-image img-rounded img-responsive center-block" /><!--Ovde ide slika predavaca-->
+		
+			<div class="grade">
+			<div class="grade-name">Ђорђе</div><!--Ovde ide ime predavaca-->
+				<div class="grade-stars"><!--Ovde se ubaci odgovarajuci broj zvezdica. Moze da se zameni i zvezdicama sa profila, ali onda mora da se dodatno generise i JS-->
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+				</div>
+			</div>
+			</a>
+		</div>
+
+		<div class="col-sm-4">
+		<a class="link-tutor" href="#">
+			<img  src="img/ixay.jpg" class="tut-image img-rounded img-responsive center-block" />
+			
+			<div class="grade">
+			<div class="grade-name">Ixay</div>
+				<div class="grade-stars">
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+				</div>
+			</div>
+			</a>
+		</div>
+
+		<div class="col-sm-4">
+		<a class="link-tutor" href="#">
+			<img src="img/maco.jpg" class="tut-image img-rounded img-responsive center-block" />
+			<div class="grade">
+			<div class="grade-name">Maćo</div>
+				<div class="grade-stars">
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+					<span class="glyphicon glyphicon-star"></span>
+				</div>
+			</div>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+	<div class="moreTeachers"><a href="#">...</a></div><!--Link do opste pretrage (prikazi sve)-->
+	</div>
+</div>
+
+
+<div class="rateTutorExample container">
+	<div class="row"><h2>Oceni predavača</h2></div>
+	<div class"row">
+	
+		<div class="col-sm-6 rating-custom"><!--Cupa se iz baze. Ocena recenzije-->
+		<div class="grade-stars">
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+		</div>
+
+		<div class="reviewer">Ocenila Brana</div><!--Recenzent. Potrebno je samo ime. Slika ne treba-->
+			<div class="review-example">
+				<div class="review-text"><!--Tekst recenzije-->
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, corporis, pariatur. Accusamus ab animi laudantium quas doloremque error, sed itaque cumque similique minima illo tempora delectus, harum asperiores nihil perspiciatis<a href="#">...</a>
+				</div>
+				<div class="tutor-data-example">
+					<div class="row"><div class="col-sm-4 col-md-3 col-lg-2">Predavač</div></div>
+					<div class="row">
+						<div class="col-xs-3 col-sm-4 col-md-3 col-lg-2"><a href="#"><img src="http://placehold.it/70x70" class="img-responsive"/></a></div><!--Slika predavaca-->
+						<div class="col-xs-4 col-sm-4"><a href="#">Igor T.<br/>Beograd</a></div><!--Ime predavaca i mesto-->
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="col-sm-6 rating-custom">
+		<div class="grade-stars">
+						<span class="glyphicon glyphicon-star-empty"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+						<span class="glyphicon glyphicon-star"></span>
+	</div>
+		<div class="reviewer">Ocenila Brana</div>
+			<div class="review-example">
+				<div class="review-text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, corporis, pariatur. Accusamus ab animi laudantium quas doloremque error, sed itaque cumque similique minima illo tempora delectus, harum asperiores nihil perspiciatis<a href="#">...</a>
+				</div>
+				<div class="tutor-data-example">
+					<div class="row"><div class="col-sm-4 col-md-3 col-lg-2">Predavač</div></div>
+					<div class="row">
+						<div class="col-xs-3 col-sm-4 col-md-3 col-lg-2"><a href="#"><img src="http://placehold.it/70x70" class="img-responsive"/></a></div>
+						<div class="col-xs-4 col-sm-4"><a href="#">Igor T.<br/>Beograd</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="callToActionSection container"><!--Uglavnom staticka sekcija. Oba linka vode do strane za registracije-->
+
+	<div class="tutor-call">
+		<h3>Držiš privatne časove?</h3>
+		<p>Mi ćemo ti pomoći da preneseš svoje znanje</p>
+		<a href="register.html" class="btn btn-primary btn-lg">Postani predavač</a>
+	</div>
+
+	<div class="student-call">
+		<h3>Tražiš predavača?</h3>
+		<p>Časovi matematike, engleskog, gitare, programiranja...</p>
+		<a href="register.html" class="btn btn-default btn-lg">Nađi predavača</a>
+	</div>
+</div>
+
+<footer class="container">
+
+	<div class="col-sm-3"> 
+		<ul>
+		 	<li><h3>O nama</h3></li>
+		 	<li><a href="#">Ko smo mi</a></li>
+		 	<li><a href="#">Oglašavanje</a></li>
+		 	<li><a href="#">FAQ</a></li>
+		 	<li><a href="#">Kontakt</a></li>
+		 	<li><a href="#">Privatnost podataka</a></li>
+		 	<li><a href="#">Uslovi korišćenja</a></li>
+		 </ul>
+	 </div>
+
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Privatni časovi</h3></li>
+		 	<li><a href="#">Nađi profesora</a></li>
+		 	<li><a href="#">Postani predavač</a></li>
+		 	<li><a href="#">Registruj se</a></li>
+		 </ul>
+	</div>
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Predmeti</h3></li>
+		 	<li><a href="#">Matematika</a></li>
+		 	<li><a href="#">Fizika</a></li>
+		 	<li><a href="#">Hemija</a></li>
+		 	<li><a href="#">Programiranje</a></li>
+		 	<li><a href="#">Engleski jezik</a></li>
+		 	<li><a href="#">Još predmeta...</a></li>
+		 </ul>	
+	</div>
+
+	<div class="col-sm-3">
+			<ul>
+		 	<li><h3>Škole</h3></li>
+		 	<li><a href="#">Osnovna škola</a></li>
+		 	<li><a href="#">Srednja škola</a></li>
+		 	<li><a href="#">ETF</a></li>
+		 	<li><a href="#">MATF</a></li>
+		 	<li><a href="#">FON</a></li>
+		 	<li><a href="#">FTN</a></li>
+		 	<li><a href="#">Još škola...</a></li>
+		 </ul>
+	</div>
+</footer>
+
+</body>
+</html>

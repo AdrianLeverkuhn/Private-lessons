@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/psi.css">
+	<link rel="stylesheet" href="css/star-rating-svg.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="js/jquery.star-rating-svg.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Prijavi korisnika</h4>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+			<div class="form-group">
+				<label for="reason">Razlog prijave</label>
+				<textarea id="reason"placeholder="Želim da prijavim korisnika zbog..."></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">Prijavi</button>
+			<button class="btn btn-default" data-dismiss="modal">Otkaži</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	<div class="nav navbar-default navbar-fixed-top" >
+		<div class="container" >
+			<div class="col-sm-10 col-sm-offset-1 menu-body" >
+			<!--Logo, buttons-->
+			<div class="navbar-header col-sm-2">
+				
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-align-justify"></span>
+				</button>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+
+				<div class="navbar-brand"><img src="img/sloth2.png" class="sloth"></div>
+
+			</div>
+			
+
+
+			<div class="col-sm-9">
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class=" col-sm-offset-7 col-sm-7 col-md-offset-8 col-lg-offset-8">
+						<ul class="nav navbar-nav logreg">
+							<li><a href="login.html">Username</a></li>
+							<li><a href="#">Odjava</a></li>
+							
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+						<form class="form-inline">
+
+							<div class="form-group col-sm-5 col-md-7">
+								<label class="sr-only" for="searchBoxMain">Traži</label>
+								<input  type="search" class="form-control" id="searchBoxMain" placeholder="Traži">
+							</div>
+
+
+							<div class="col-sm-4 col-md-3">
+								<select  class="form-control select-city">
+									<option>Beograd</option>
+									<option>Novi Sad</option>
+									<option>Niš</option>
+									<option>Kragujevac</option>
+								</select>
+							</div>
+
+							<div class="col-sm-3 col-md-2">
+								<button id="menuButton" type="submit" class="btn btn-primary btn-block">Traži</button>
+							</div>
+
+						</form>
+							
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+<div class="page container">
+<div class="col-sm-12 col-md-10 col-md-offset-1">
+
+	<div class="row basic-profile">
+		<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 no-padding-left"><img src="http://placehold.it/150x150" class="img-responsive img-rounded"></div>
+		<div class="col-xs-4 col-sm-5 col-md-5 col-lg-5">
+			<div class="row"><div class="profile-name">Ime Prezime</div><a href="#" data-toggle="modal" data-target="#myModal" ><div class="glyphicon glyphicon-flag"></div></a>
+			</div>
+			
+			<div class="row">
+				<div class="profile-city">Beograd</div>
+			</div>
+
+			<div class="row">
+				<div class="profile-email">somebody@somewhere.com</div>
+			</div>
+
+			<div class="row">
+				<div class="profile-phone">064/444-44-44</div>
+			</div>
+
+			
+		</div>
+		<div class="rate-data col-xs-3 col-sm-3 col-md-2 col-lg-2 pull-right">
+		<div class="row"><div class="glyphicon glyphicon-globe"></div>
+			<div class="glyphicon glyphicon-heart"></div>
+			<div class="glyphicon glyphicon-check"></div>
+			<div class="glyphicon glyphicon-home"></div>
+		</div>
+		<div class="row">
+				<div class="my-rating"></div>
+		</div>
+
+		<div class="row">
+				<button class="btn btn-primary">Pošalji poruku</button>
+		</div>
+
+		</div>
+	</div>
+
+	<div class="list-of-subjects col-xs-12">
+	<div class="row"><h2>Drži časove:</div>
+		<div class="row">
+		<table class="table">
+		    <thead>
+		      <tr>
+		        <th>Oblast</th>
+		        <th>Podoblast</th>
+		        <th>Cena po času</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>Programiranje</td>
+		        <td>Operativni sistemi</td>
+		        <td>1500 RSD</td>
+		      </tr>
+		      <tr>
+		        <td>Jezici</td>
+		        <td>Engleski</td>
+		        <td>1000 RSD</td>
+		      </tr>
+		      <tr>
+		        <td>Muzički instrumenti</td>
+		        <td>Gitara</td>
+		        <td>1500 RSD</td>
+		      </tr>
+		    </tbody>
+  		</table>
+		</div>
+	</div>
+
+
+	<div class="biography col-xs-12">
+		<div class="row"><h2>Biografija</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit enim, numquam dolor perferendis ea, quibusdam consequatur iure nesciunt impedit doloribus corrupti harum fugiat, nulla. Vitae dolor, totam quae illum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit eius tempore, accusamus cum facilis atque adipisci dolore, error ut provident omnis. Dolor placeat, nulla eaque veritatis rerum adipisci. Ipsam, placeat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, quod porro aliquid repellendus tempore enim cupiditate adipisci. Quibusdam autem tempore ea et quisquam, dicta, porro repellat illo incidunt nihil eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, quos perferendis, ullam assumenda velit dolorem mollitia! Ea corrupti explicabo, at assumenda nulla, quisquam pariatur nesciunt laboriosam sit impedit, placeat alias!</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit enim, numquam dolor perferendis ea, quibusdam consequatur iure nesciunt impedit doloribus corrupti harum fugiat, nulla. Vitae dolor, totam quae illum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit eius tempore, accusamus cum facilis atque adipisci dolore, error ut provident omnis. Dolor placeat, nulla eaque veritatis rerum adipisci. Ipsam, placeat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, quod porro aliquid repellendus tempore enim cupiditate adipisci. Quibusdam autem tempore ea et quisquam, dicta, porro repellat illo incidunt nihil eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, quos perferendis, ullam assumenda velit dolorem mollitia! Ea corrupti explicabo, at assumenda nulla, quisquam pariatur nesciunt laboriosam sit impedit, placeat alias!</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit enim, numquam dolor perferendis ea, quibusdam consequatur iure nesciunt impedit doloribus corrupti harum fugiat, nulla. Vitae dolor, totam quae illum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit eius tempore, accusamus cum facilis atque adipisci dolore, error ut provident omnis. Dolor placeat, nulla eaque veritatis rerum adipisci. Ipsam, placeat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, quod porro aliquid repellendus tempore enim cupiditate adipisci. Quibusdam autem tempore ea et quisquam, dicta, porro repellat illo incidunt nihil eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, quos perferendis, ullam assumenda velit dolorem mollitia! Ea corrupti explicabo, at assumenda nulla, quisquam pariatur nesciunt laboriosam sit impedit, placeat alias!</p>
+		</div>
+	</div>
+
+	<div class="experience col-xs-12">
+		<h2 class="row">Radno iskustvo</h2>
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">Posao</div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Poslodavac</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">Posao</div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Poslodavac</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">Posao</div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Poslodavac</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+	</div>
+
+	<div class="reviews col-xs-12">
+	<form>
+		<div class="row"><div id="review-rating-value" class="my-rating"></div></div>
+		<div class="row">
+		<textarea id="review-box" placeholder="Unesite tekst recenzije"></textarea>
+		</div>
+		<div class="row"><button type="submit" class="btn btn-primary">Oceni</button></div>
+	</form>
+
+	<div class="review-item-profile">
+	<div class="row"><div id="review-rating-1" class="my-rating"></div></div>
+	<div class="row"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat vel quisquam suscipit similique voluptates commodi quia eos tempore ullam? Consequuntur illum iusto maxime ex eligendi voluptatibus, sint minus recusandae tempora.</p></div>
+	<div class="row"><div class="profile-reviewer">Cicero</div></div>
+	</div>
+
+	<div class="review-item-profile">
+	<div class="row"><div id="review-rating-1" class="my-rating"></div></div>
+	<div class="row"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat vel quisquam suscipit similique voluptates commodi quia eos tempore ullam? Consequuntur illum iusto maxime ex eligendi voluptatibus, sint minus recusandae tempora.</p></div>
+	<div class="row"><div class="profile-reviewer">Cicero</div></div>
+	</div>
+
+	<div class="review-item-profile">
+	<div class="row"><div id="review-rating-1" class="my-rating"></div></div>
+	<div class="row"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat vel quisquam suscipit similique voluptates commodi quia eos tempore ullam? Consequuntur illum iusto maxime ex eligendi voluptatibus, sint minus recusandae tempora.</p></div>
+	<div class="row"><div class="profile-reviewer">Cicero</div></div>
+	</div>
+
+	<div class="review-item-profile">
+	<div class="row"><div id="review-rating-1" class="my-rating"></div></div>
+	<div class="row"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat vel quisquam suscipit similique voluptates commodi quia eos tempore ullam? Consequuntur illum iusto maxime ex eligendi voluptatibus, sint minus recusandae tempora.</p></div>
+	<div class="row"><div class="profile-reviewer">Cicero</div></div>
+	</div>
+
+	<div class="review-item-profile">
+	<div class="row"><div id="review-rating-1" class="my-rating"></div></div>
+	<div class="row"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat vel quisquam suscipit similique voluptates commodi quia eos tempore ullam? Consequuntur illum iusto maxime ex eligendi voluptatibus, sint minus recusandae tempora.</p></div>
+	<div class="row"><div class="profile-reviewer">Cicero</div></div>
+	</div>
+
+	
+</div>
+</div>
+
+</div>
+
+	<footer class="container">
+
+	<div class="col-sm-3"> 
+		<ul>
+		 	<li><h3>O nama</h3></li>
+		 	<li><a href="#">Ko smo mi</a></li>
+		 	<li><a href="#">Oglašavanje</a></li>
+		 	<li><a href="#">FAQ</a></li>
+		 	<li><a href="#">Kontakt</a></li>
+		 	<li><a href="#">Privatnost podataka</a></li>
+		 	<li><a href="#">Uslovi korišćenja</a></li>
+		 </ul>
+	 </div>
+
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Privatni časovi</h3></li>
+		 	<li><a href="#">Nađi profesora</a></li>
+		 	<li><a href="#">Postani predavač</a></li>
+		 	<li><a href="#">Registruj se</a></li>
+		 </ul>
+	</div>
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Predmeti</h3></li>
+		 	<li><a href="#">Matematika</a></li>
+		 	<li><a href="#">Fizika</a></li>
+		 	<li><a href="#">Hemija</a></li>
+		 	<li><a href="#">Programiranje</a></li>
+		 	<li><a href="#">Engleski jezik</a></li>
+		 	<li><a href="#">Još predmeta...</a></li>
+		 </ul>	
+	</div>
+
+	<div class="col-sm-3">
+			<ul>
+		 	<li><h3>Škole</h3></li>
+		 	<li><a href="#">Osnovna škola</a></li>
+		 	<li><a href="#">Srednja škola</a></li>
+		 	<li><a href="#">ETF</a></li>
+		 	<li><a href="#">MATF</a></li>
+		 	<li><a href="#">FON</a></li>
+		 	<li><a href="#">FTN</a></li>
+		 	<li><a href="#">Još škola...</a></li>
+		 </ul>
+	</div>
+</footer>
+
+<script>
+$(function() {
+
+  // basic use comes with defaults values
+  $(".my-rating").starRating({
+    initialRating: 4,
+    starSize: 25,
+    disableAfterRate: false
+  });
+});
+</script>
+</body>
+</html>

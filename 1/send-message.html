@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/psi.css">
+	<link rel="stylesheet" href="css/star-rating-svg.css">
+	<link rel="stylesheet" href="css/jasny-bootstrap.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="js/jquery.star-rating-svg.js"></script>
+	<script src="js/jasny-bootstrap.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+	<div class="nav navbar-default navbar-fixed-top" >
+		<div class="container" >
+			<div class="col-sm-10 col-sm-offset-1 menu-body" >
+			<!--Logo, buttons-->
+			<div class="navbar-header col-sm-2">
+				
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-align-justify"></span>
+				</button>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+
+				<div class="navbar-brand"><img src="img/sloth2.png" class="sloth"></div>
+
+			</div>
+			
+
+
+			<div class="col-sm-9">
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class=" col-sm-offset-7 col-sm-7 col-md-offset-8 col-lg-offset-8">
+						<ul class="nav navbar-nav logreg">
+							<li><a href="login.html">Prijava</a></li>
+							<li><a href="#">Registracija</a></li>
+							
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+						<form class="form-inline">
+
+							<div class="form-group col-sm-5 col-md-7">
+								<label class="sr-only" for="searchBoxMain">Traži</label>
+								<input  type="search" class="form-control" id="searchBoxMain" placeholder="Traži">
+							</div>
+
+
+							<div class="col-sm-4 col-md-3">
+								<select  class="form-control select-city">
+									<option>Beograd</option>
+									<option>Novi Sad</option>
+									<option>Niš</option>
+									<option>Kragujevac</option>
+								</select>
+							</div>
+
+							<div class="col-sm-3 col-md-2">
+								<button id="menuButton" type="submit" class="btn btn-primary btn-block">Traži</button>
+							</div>
+
+						</form>
+							
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="message1-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="message-title">Subject</h4>
+      </div>
+      <div id="message-body" class="modal-body">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos at optio a nisi pariatur ullam minus architecto quo, autem provident tenetur reiciendis sequi, assumenda, quasi odio quas, nihil! Nemo, deleniti.
+      </div>
+      <div class="modal-footer">
+      <a href="#" type="button" class="btn btn-primary" id="message-respond">Odgovori</a>
+       <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="page container">
+<ul class="nav nav-tabs">
+  <li><a href="#">Profil</a></li>
+  <li><a href="#">Lozinka</a></li>
+  <li class="active"><a href="#">Poruke <span class="badge">42</span></a></li>
+</ul>
+
+<div class = "col-xs-6 col-sm-5 col-sm-offset-1">
+	<form class="send-message-form">
+		<div class="form-group">
+			<label for="#recipient">To:</label>
+			<input class="form-control" id="recipient" required>
+		</div>
+
+		<div class="form-group">
+			<label for="#subject">Subject:</label>
+			<input class="form-control" id="subject" required>
+		</div>
+
+		<div class="form-group">
+			<textarea class="form-control"></textarea>
+		</div>
+
+		<button type="submit" class="btn btn-default btn-lg">Pošalji</button>
+	</form>
+</div>
+
+<div class = "col-xs-6 col-sm-5 messages">
+	<div id = "2848782" class="row message unread">Od: <a href="#">Korisnik</a> <span  class="subject-message">Subject: <a class="message-link" data-toggle="modal" data-target="#message1-modal" href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+	<div class="row message">Od: <a href="#">Korisnik</a> <span class="subject-message">Subject: <a href="#">Nešto</a></span> <span class="date-message">Stigla: 31.2.2016.</span></div>
+
+	<ul class="pager">
+ 	<li><a href="#">Previous</a></li>
+  	<li><a href="#">Next</a></li>
+	</ul>
+</div>
+</div>
+
+	<footer class="container">
+
+	<div class="col-sm-3"> 
+		<ul>
+		 	<li><h3>O nama</h3></li>
+		 	<li><a href="#">Ko smo mi</a></li>
+		 	<li><a href="#">Oglašavanje</a></li>
+		 	<li><a href="#">FAQ</a></li>
+		 	<li><a href="#">Kontakt</a></li>
+		 	<li><a href="#">Privatnost podataka</a></li>
+		 	<li><a href="#">Uslovi korišćenja</a></li>
+		 </ul>
+	 </div>
+
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Privatni časovi</h3></li>
+		 	<li><a href="#">Nađi profesora</a></li>
+		 	<li><a href="#">Postani predavač</a></li>
+		 	<li><a href="#">Registruj se</a></li>
+		 </ul>
+	</div>
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Predmeti</h3></li>
+		 	<li><a href="#">Matematika</a></li>
+		 	<li><a href="#">Fizika</a></li>
+		 	<li><a href="#">Hemija</a></li>
+		 	<li><a href="#">Programiranje</a></li>
+		 	<li><a href="#">Engleski jezik</a></li>
+		 	<li><a href="#">Još predmeta...</a></li>
+		 </ul>	
+	</div>
+
+	<div class="col-sm-3">
+			<ul>
+		 	<li><h3>Škole</h3></li>
+		 	<li><a href="#">Osnovna škola</a></li>
+		 	<li><a href="#">Srednja škola</a></li>
+		 	<li><a href="#">ETF</a></li>
+		 	<li><a href="#">MATF</a></li>
+		 	<li><a href="#">FON</a></li>
+		 	<li><a href="#">FTN</a></li>
+		 	<li><a href="#">Još škola...</a></li>
+		 </ul>
+	</div>
+</footer>
+
+<script>
+$(document).ready(function (){
+	$(".message-link").click( function(event) {var par = $(event.target).closest(".message");
+												   var id = par.attr("id");
+												   var update = false;
+												   if (par.hasClass("unread"))
+												   {
+												   		par.removeClass("unread");
+												   		update = true;
+													}
+													var data = {idRead: id, change: update, isAjaxCalling: true};
+												   $.ajax({
+														url: '#',
+														type: 'POST',
+														data: data,
+														success: function(mes) {
+															if (mes)
+															{
+																$('#message-title').text(mes.title);
+																$('#message-body').html(mes.body);
+																$('#message-respond').attr("href","URL/"+id);
+															}
+														},
+														dataType:"json"
+													});
+												}
+												});
+})
+</script>
+</body>
+</html>
