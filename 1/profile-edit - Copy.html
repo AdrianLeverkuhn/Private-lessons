@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/psi.css">
+	<link rel="stylesheet" href="css/star-rating-svg.css">
+	<link rel="stylesheet" href="css/jasny-bootstrap.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="js/jquery.star-rating-svg.js"></script>
+	<script src="js/jasny-bootstrap.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+
+
+	<div class="nav navbar-default navbar-fixed-top" >
+		<div class="container" >
+			<div class="col-sm-10 col-sm-offset-1 menu-body" >
+			<!--Logo, buttons-->
+			<div class="navbar-header col-sm-2">
+				
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-align-justify"></span>
+				</button>
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+
+				<div class="navbar-brand"><img src="img/sloth2.png" class="sloth"></div>
+
+			</div>
+			
+
+
+			<div class="col-sm-9">
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class=" col-sm-offset-7 col-sm-7 col-md-offset-8 col-lg-offset-8">
+						<ul class="nav navbar-nav logreg">
+							<li><a href="login.html">Prijava</a></li>
+							<li><a href="#">Registracija</a></li>
+							
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+						<form class="form-inline">
+
+							<div class="form-group col-sm-5 col-md-7">
+								<label class="sr-only" for="searchBoxMain">Traži</label>
+								<input  type="search" class="form-control" id="searchBoxMain" placeholder="Traži">
+							</div>
+
+
+							<div class="col-sm-4 col-md-3">
+								<select  class="form-control select-city">
+									<option>Beograd</option>
+									<option>Novi Sad</option>
+									<option>Niš</option>
+									<option>Kragujevac</option>
+								</select>
+							</div>
+
+							<div class="col-sm-3 col-md-2">
+								<button id="menuButton" type="submit" class="btn btn-primary btn-block">Traži</button>
+							</div>
+
+						</form>
+							
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</div>
+
+<div id="bio-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Izmeni biografiju</h4>
+      </div>
+      <form action="#">
+      <textarea id="edit-bio-textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, dicta omnis maiores incidunt laboriosam commodi dolorem minima perspiciatis veniam hic optio, reiciendis tempore nihil aspernatur fugiat ipsa magni quos, doloremque! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi esse, quaerat cumque veritatis facere doloribus dolor ipsa, qui at quidem dicta iste eaque alias omnis et nesciunt nam autem deserunt.</textarea>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+        <button type="submit" class="btn btn-primary">Sačuvaj</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<div id="profile-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Izmeni osnovne podatke</h4>
+      </div>
+      <form action="#">
+      <div class="modal-form-left">
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+		  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 150px;"><img src="http://placehold.it/150x150"></div>
+		  <div>
+		    <span class="btn btn-default btn-file"><span class="fileinput-new">Odaberi sliku</span><span class="fileinput-exists">Izmeni</span><input id="new-profile-image"type="file" ></span>
+		    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Ukloni</a>
+		  </div>
+		</div>
+	<div class="checkbox">
+  	<label><input type="checkbox" id="form-addr-chk" value="">Dolazim na adresu</label></div>
+  	<div class="checkbox">
+  	<label><input type="checkbox" id="form-onl-chk" value="">Držim online časove</label></div>
+  	<div class="checkbox">
+  	<label><input type="checkbox" id="form-grp-chk" value="">Držim grupne časove</label></div>
+	</div>
+
+	<div class="modal-form-right">
+	      <div class=form-group>
+	      	<label for="form-edit-name">Ime</label>
+	      	<input id="form-edit-name" value="Ime">
+	      </div>
+	      <div class=form-group>
+	      	<label for="form-edit-surname">Prezime</label>
+	      	<input id="form-edit-surname" value="Prezime">
+	      </div>
+	      <div class=form-group>
+	      	<label for="form-edit-city">Grad</label>
+	      	<select id="form-edit-city">
+	      		<option>Beograd</option>
+	      		<option>Novi Sad</option>
+	      		<option>Nis</option>
+	      		<option>Kragujevac</option>
+	      	</select>
+	      </div>
+	      <div class=form-group>
+	      	<label for="form-edit-email">Email</label>
+	      	<input id="form-edit-email" value="someone@something.com">
+	      </div>
+	      <div class=form-group>
+	      	<label for="form-edit-phone">Broj telefona</label>
+	      	<input id="form-edit-phone" value="064/444-44-44">
+	      </div>
+     </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+        <button type="submit" class="btn btn-primary">Sačuvaj</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="tutor-modal" class="modal  fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Dodaj čas</h4>
+      </div>
+      <form action="#">
+      <div class=form-group>
+	      	<label for="form-edit-subject">Oblast</label>
+	      	<select id="form-edit-subject"> <!--Placeholder dok ne uradim JS za ovo-->
+	      		<option>Programiranje</option>
+	      		<option>Jezici</option>
+	      		<option>Instrumenti</option>
+	      		<option>Gitara</option>
+	      	</select>
+	  </div>
+
+	  <div class=form-group>
+	      	<label for="form-edit-topic">Podoblast</label>
+	      	<select id="form-edit-topic"> <!--Placeholder dok ne uradim JS za ovo-->
+	      		<option>Operativni sistemi</option>
+	      		<option>C/C++</option>
+	      		<option>Pascal</option>
+	      		<option>Web development</option>
+	      	</select>
+	  </div>
+
+	  <div class=form-group>
+	      	<label for="form-edit-price">Cena (u RSD)</label>
+	      	<input id="form-edit-price" type="number" required>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+        <button type="submit" class="btn btn-primary">Sačuvaj</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="work-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Dodaj radno iskustvo</h4>
+      </div>
+      <form action="#">
+      <div class=form-group>
+	      	<label for="form-edit-job">Naziv posla</label>
+	      	<input id="form-edit-job" required>
+	  </div>
+
+	  <div class=form-group>
+	      	<label for="form-edit-employer">Poslodavac</label>
+	      	<input id="form-edit-employer" required>
+	  </div>
+
+	  <div class=form-group>
+	  		<label for="#datetimepicker1">Od:</label>
+	      	<div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+	  </div>
+
+	  <div class=form-group>
+	  		<label for="#datetimepicker2">Do:</label>
+	      	<div class='input-group date' id='datetimepicker2'>
+                    <input id="datetimepicker2-input" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+	  </div>
+	<div class=form-group>
+		<input type="checkbox" id="present-checkbox">
+	  	<label id="present-label" for="#present-checkbox">Još traje</label>  	
+	</div>
+
+
+      <div class="modal-footer">
+      	<button type="submit" class="btn btn-primary">Sačuvaj</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="edu-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Dodaj obrazovanje</h4>
+      </div>
+      <form action="#">
+      <div class=form-group>
+	      	<label for="form-edit-edu">Naziv</label>
+	      	<input id="form-edit-edu" required>
+	  </div>
+
+	  <div class=form-group>
+	      	<label for="form-edit-institution">Institucija</label>
+	      	<input id="form-edit-institution" required>
+	  </div>
+	  
+	  <div class=form-group>
+	  		<label for="#datetimepicker3">Datum:</label>
+	      	<div class='input-group date' id='datetimepicker3'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+	  </div>
+
+	  <div class=form-group>
+	  		<label for="#datetimepicker4">Do:</label>
+	      	<div class='input-group date' id='datetimepicker4'>
+                    <input id="datetimepicker4-input" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+	  </div>
+	<div class=form-group>
+		<input type="checkbox" id="present-checkbox-2">
+	  	<label id="present-label" for="#present-checkbox-2">Još traje</label>  	
+	</div>
+
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Sačuvaj</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="cert-modal" class="modal  fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Dodaj sertifikat</h4>
+      </div>
+      <form action="#">
+			<div class="form-group">
+				<label for="form-certificate-name">Naziv sertifikata</label>
+	      		<input id="form-certificate-name" required>
+			</div>
+
+			<div class="form-group">
+				<label for="form-certificate-institution">Naziv institucije</label>
+	      		<input id="form-certificate-institution" required>
+			</div>
+
+	  <div class=form-group>
+	      	<div class=form-group>
+	  		<label for="#datetimepickercert">Do:</label>
+	      	<div class='input-group date' id='datetimepickercert'>
+                    <input id="datetimepickercert-input" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+            </div>
+	  </div>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+        <button type="submit" class="btn btn-primary">Sačuvaj</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="page container">
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">Profil</a></li>
+  <li><a href="#">Lozinka</a></li>
+  <li><a href="#">Poruke <span class="badge">42</span></a></li>
+</ul>
+
+<div class="col-sm-12 col-md-10 col-md-offset-1">
+
+	<div class="row basic-profile">
+		<div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 no-padding-left"><img src="http://placehold.it/150x150" class="img-responsive img-rounded"></div>
+		<div class="col-xs-4 col-sm-5 col-md-5 col-lg-5">
+			<div class="row"><div class="profile-name">Ime Prezime</div><a data-toggle="modal" data-target="#profile-modal" href="#"><div class="glyphicon glyphicon-pencil"></div></a>
+			</div>
+			
+			<div class="row">
+				<div class="profile-city">Beograd</div>
+			</div>
+
+			<div class="row">
+				<div class="profile-email">somebody@somewhere.com</div>
+			</div>
+
+			<div class="row">
+				<div class="profile-phone">064/444-44-44</div>
+			</div>
+
+			
+		</div>
+		<div class="rate-data col-xs-3 col-sm-3 col-md-2 col-lg-2 pull-right">
+		<div class="row"><div class="glyphicon glyphicon-globe"></div>
+			<div class="glyphicon glyphicon-heart"></div>
+			<div class="glyphicon glyphicon-check"></div>
+			<div class="glyphicon glyphicon-home"></div>
+		</div>
+		<div class="row">
+				<div class="my-rating"></div>
+		</div>
+
+		<div class="row">
+				<button disabled="true" class="btn btn-primary btn-disabled">Pošalji poruku</button>
+		</div>
+
+		</div>
+	</div>
+
+	<div class="list-of-subjects col-xs-12">
+	<div class="row"><h2>Časovi<a data-toggle="modal" data-target="#tutor-modal" href="#"><div class="glyphicon glyphicon-plus"></div></a></h2></div>
+		<div class="row">
+		<table class="table">
+		    <thead>
+		      <tr>
+		        <th>Oblast</th>
+		        <th>Podoblast</th>
+		        <th>Cena po času</th>
+		        <th>Ukloni</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>Programiranje</td>
+		        <td>Operativni sistemi</td>
+		        <td>1500 RSD</td>
+		        <td><a href="#"><div class="glyphicon glyphicon-remove"></div></a></td>
+		      </tr>
+		      <tr>
+		        <td>Jezici</td>
+		        <td>Engleski</td>
+		        <td>1000 RSD</td>
+		        <td><a href="#"><div class="glyphicon glyphicon-remove"></div></a></td>
+		      </tr>
+		      <tr>
+		        <td>Muzički instrumenti</td>
+		        <td>Gitara</td>
+		        <td>1500 RSD</td>
+		        <td><a href="#"><div class="glyphicon glyphicon-remove"></div></a></td>
+		      </tr>
+		    </tbody>
+  		</table>
+		</div>
+	</div>
+
+
+	<div class="biography col-xs-12">
+		<div class="row"><h2>Biografija<a data-toggle="modal" data-target="#bio-modal" href="#"><div class="glyphicon glyphicon-pencil"></div></a></h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit enim, numquam dolor perferendis ea, quibusdam consequatur iure nesciunt impedit doloribus corrupti harum fugiat, nulla. Vitae dolor, totam quae illum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit eius tempore, accusamus cum facilis atque adipisci dolore, error ut provident omnis. Dolor placeat, nulla eaque veritatis rerum adipisci. Ipsam, placeat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, quod porro aliquid repellendus tempore enim cupiditate adipisci. Quibusdam autem tempore ea et quisquam, dicta, porro repellat illo incidunt nihil eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, quos perferendis, ullam assumenda velit dolorem mollitia! Ea corrupti explicabo, at assumenda nulla, quisquam pariatur nesciunt laboriosam sit impedit, placeat alias!</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit enim, numquam dolor perferendis ea, quibusdam consequatur iure nesciunt impedit doloribus corrupti harum fugiat, nulla. Vitae dolor, totam quae illum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit eius tempore, accusamus cum facilis atque adipisci dolore, error ut provident omnis. Dolor placeat, nulla eaque veritatis rerum adipisci. Ipsam, placeat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, quod porro aliquid repellendus tempore enim cupiditate adipisci. Quibusdam autem tempore ea et quisquam, dicta, porro repellat illo incidunt nihil eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, quos perferendis, ullam assumenda velit dolorem mollitia! Ea corrupti explicabo, at assumenda nulla, quisquam pariatur nesciunt laboriosam sit impedit, placeat alias!</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit enim, numquam dolor perferendis ea, quibusdam consequatur iure nesciunt impedit doloribus corrupti harum fugiat, nulla. Vitae dolor, totam quae illum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit eius tempore, accusamus cum facilis atque adipisci dolore, error ut provident omnis. Dolor placeat, nulla eaque veritatis rerum adipisci. Ipsam, placeat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, quod porro aliquid repellendus tempore enim cupiditate adipisci. Quibusdam autem tempore ea et quisquam, dicta, porro repellat illo incidunt nihil eos. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, quos perferendis, ullam assumenda velit dolorem mollitia! Ea corrupti explicabo, at assumenda nulla, quisquam pariatur nesciunt laboriosam sit impedit, placeat alias!</p>
+		</div>
+	</div>
+
+	<div class="experience col-xs-12">
+		<h2 class="row">Radno iskustvo<a data-toggle="modal" data-target="#work-modal" href="#"><div class="glyphicon glyphicon-plus"></div></a></h2>
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">Posao<a href="#"><div class="glyphicon glyphicon-remove"></div></a></div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Poslodavac</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">Posao<a href="#"><div class="glyphicon glyphicon-remove"></div></a></div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Poslodavac</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">Posao<a href="#"><div class="glyphicon glyphicon-remove"></div></a></div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Poslodavac</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+	</div>
+
+	<div class="education col-xs-12">
+		<h2 class="row">Obrazovanje<a data-toggle="modal" data-target="#edu-modal" href="#"><div class="glyphicon glyphicon-plus"></div></a></h2>
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">ETF<a href="#"><div class="glyphicon glyphicon-remove"></div></a></div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Redovne studije</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">CEH<a href="#"><div class="glyphicon glyphicon-remove"></div></a></div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Kurs</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+
+		<div class="experience-item">
+			<div class="row">
+			<div class="col-sm-6 no-padding-left">
+					<div class="experience-name pull-left">ETF<a href="#"><div class="glyphicon glyphicon-remove"></div></a></div>
+					<div class="experience-time pull-right">Jan 1991- Jan 2008</div>
+			</div>
+			</div>
+
+			<div class="row experience-employer">Master studije</div>
+			<div class="experience-text row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti illo eveniet sapiente laborum totam facere hic dignissimos assumenda optio ab animi, praesentium cumque ducimus? Numquam necessitatibus natus consectetur ullam sit.</div>
+		</div>
+	</div>
+
+	<div class="certificates col-xs-12">
+	<div class="row"><h2>Sertifikati<a data-toggle="modal" data-target="#cert-modal" href="#"><div class="glyphicon glyphicon-plus"></div></a></div>
+		<div class="row">
+		<table class="table">
+		    <thead>
+		      <tr>
+		        <th>Naziv sertifikata</th>
+		        <th>Ustanova</th>
+		        <th>Datum</th>
+		        <th>Ukloni</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>CPE</td>
+		        <td>British Council</td>
+		        <td>20.5.2013.</td>
+		        <td><a href="#"><div class="glyphicon glyphicon-remove"></div></a></td>
+		      </tr>
+		      <tr>
+		        <td>CPE</td>
+		        <td>British Council</td>
+		        <td>20.5.2013.</td>
+		        <td><a href="#"><div class="glyphicon glyphicon-remove"></div></a></td>
+		      </tr>
+		      <tr>
+		        <td>CPE</td>
+		        <td>British Council</td>
+		        <td>20.5.2013.</td>
+		        <td><a href="#"><div class="glyphicon glyphicon-remove"></div></a></td>
+		      </tr>
+		    </tbody>
+  		</table>
+		</div>
+	</div>
+
+</div>
+
+</div>
+
+	<footer class="container">
+
+	<div class="col-sm-3"> 
+		<ul>
+		 	<li><h3>O nama</h3></li>
+		 	<li><a href="#">Ko smo mi</a></li>
+		 	<li><a href="#">Oglašavanje</a></li>
+		 	<li><a href="#">FAQ</a></li>
+		 	<li><a href="#">Kontakt</a></li>
+		 	<li><a href="#">Privatnost podataka</a></li>
+		 	<li><a href="#">Uslovi korišćenja</a></li>
+		 </ul>
+	 </div>
+
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Privatni časovi</h3></li>
+		 	<li><a href="#">Nađi profesora</a></li>
+		 	<li><a href="#">Postani predavač</a></li>
+		 	<li><a href="#">Registruj se</a></li>
+		 </ul>
+	</div>
+
+	<div class="col-sm-3">
+		<ul>
+		 	<li><h3>Predmeti</h3></li>
+		 	<li><a href="#">Matematika</a></li>
+		 	<li><a href="#">Fizika</a></li>
+		 	<li><a href="#">Hemija</a></li>
+		 	<li><a href="#">Programiranje</a></li>
+		 	<li><a href="#">Engleski jezik</a></li>
+		 	<li><a href="#">Još predmeta...</a></li>
+		 </ul>	
+	</div>
+
+	<div class="col-sm-3">
+			<ul>
+		 	<li><h3>Škole</h3></li>
+		 	<li><a href="#">Osnovna škola</a></li>
+		 	<li><a href="#">Srednja škola</a></li>
+		 	<li><a href="#">ETF</a></li>
+		 	<li><a href="#">MATF</a></li>
+		 	<li><a href="#">FON</a></li>
+		 	<li><a href="#">FTN</a></li>
+		 	<li><a href="#">Još škola...</a></li>
+		 </ul>
+	</div>
+</footer>
+
+<script>
+$("#present-checkbox").click(function() {
+    $("#datetimepicker2-input").prop("disabled", this.checked); 
+});
+
+$("#present-checkbox-2").click(function() {
+    $("#datetimepicker4-input").prop("disabled", this.checked); 
+});
+
+$(function() {
+	$('#datetimepickercert').datetimepicker();
+	$('#datetimepicker1').datetimepicker();
+	$('#datetimepicker2').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker1").on("dp.change", function (e) {
+            $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker2").on("dp.change", function (e) {
+            $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+        });
+
+    $('#datetimepicker3').datetimepicker();
+	$('#datetimepicker4').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker3").on("dp.change", function (e) {
+            $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker3").on("dp.change", function (e) {
+            $('#datetimepicker4').data("DateTimePicker").maxDate(e.date);
+        });
+  // basic use comes with defaults values
+  $(".my-rating").starRating({
+    initialRating: 4,
+    starSize: 25,
+    disableAfterRate: false
+  });
+});
+</script>
+</body>
+</html>
