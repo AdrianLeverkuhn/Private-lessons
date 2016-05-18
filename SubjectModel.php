@@ -63,6 +63,8 @@ class SubjectModel extends CI_Model{
         'poOpadajucojCeni' => $poOpadajucojCeni,//sortira po opadajucoj ceni, boolean vrednost
         'poRastucojCeni' => $poRastucojCeni,//sortira po rastucoj ceni, boolean vrednost
         'poOceni' => $poOceni,//sortira po oceni, boolean vrednost
+        'poRelevantnosti' => $poRelevantnosti,//seortira prema relevantnosti sa stringom koji je poslat kao pretraga
+        'pretraga' => $stringPretrage,//vrednost koju je korisnik uneo u searchbar
         'banovan' => $daLiHocesBanovane//bool vrednost kojom saopstavas dal zelis i banovane, za TRUE se salju svi, za FALSE samo nebanovani
     );
     foreach (getTutorsByCriteria($data) as $row)//one row coresponds to one tutor
@@ -107,9 +109,67 @@ class SubjectModel extends CI_Model{
             $this->db->order_by('cena', 'ASC');
         if($data['poOceni']!=NULL)
             $this->db->order_by('ukupnaOcena', 'DESC');
-        //$this->db->order_by('title', 'DESC');
         $query = $this->db->get();
-        return $query->result_array();
+        $result = $query->result_array();;
+        if($data['poRelevantnosti']!=NULL){
+            $searches = explode(" ", strtolower($data['pretraga']));
+            $myResult = array();
+            foreach($result as $row){
+                $myResult[$row] = $this->relevancePoints($row, $searches);
+            }
+            arsort($myResult);
+            return $myResult;
+        }
+        return $result;
+    }
+    
+    private function relevancePoints($tutor, $words){
+        $weights = array(
+            'firstName' => 20,
+            'lastName' => 20,
+            'region' => 15,
+            'advert' => 10,
+            'education' => 2,
+            'certificate' => 5,
+            'biography' => 1
+        );
+        $total = 0;
+        foreach($words as $word){
+            $total += weights['firstName']*substr_count(strtolower($tutor['ime']), $word);
+            $total += weights['lastName']*substr_count(strtolower($tutor['prezime']), $word);
+            $total += weights['region']*substr_count(strtolower($tutor['mesto']), $word);
+            $total += weights['biography']*substr_count(strtolower($tutor['biografija']), $word);
+            
+            $this->db->select('idTutor');
+            $this->db->from('Tutor');
+            $this->db->join('Oglas', 'Tutor.idTutor = Oglas.idTutor');
+            $this->db->join('Predmet', 'Predmet.idPredmet = Oglas.idPredmet');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            foreach($result as $row){
+                $total += weights['advert']*substr_count(strtolower($row['naziv']), $word);
+            }
+            
+            $this->db->select('idTutor');
+            $this->db->from('Tutor');
+            $this->db->join('Sertifikat', 'Tutor.idTutor = Sertifikat.idTutor');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            foreach($result as $row){
+                $total += weights['certificate']*substr_count(strtolower($row['naziv']), $word);
+            }
+            
+            $this->db->select('idTutor');
+            $this->db->from('Tutor');
+            $this->db->join('Obrazovanje', 'Tutor.idTutor = Obrazovanje.idTutor');
+            $query = $this->db->get();
+            $result = $query->result_array();
+            foreach($result as $row){
+                $total += weights['education']*substr_count(strtolower($row['institucija']), $word);
+                $total += weights['education']*substr_count(strtolower($row['opis']), $word);
+            }
+        }
+        return $total;
     }
     
     //array: returns an array of tutors for such subjects
