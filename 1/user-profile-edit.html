@@ -13,6 +13,8 @@
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+  	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js"></script>
 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -102,7 +104,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Izmeni osnovne podatke</h4>
       </div>
-      <form action="#">
+      <form id="tutor-upgrade-form" action="#">
       <div class="modal-form-left">
       <div class="fileinput fileinput-new" data-provides="fileinput">
 		  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 150px;"><img src="http://placehold.it/150x150"></div>
@@ -112,38 +114,38 @@
 		  </div>
 		</div>
 	<div class="checkbox">
-  	<label><input type="checkbox" id="form-addr-chk" value="">Dolazim na adresu</label></div>
+  	<label><input type="checkbox" id="form-addr-chk" name="form-addr-chk" >Dolazim na adresu</label></div>
   	<div class="checkbox">
-  	<label><input type="checkbox" id="form-onl-chk" value="">Držim online časove</label></div>
+  	<label><input type="checkbox" id="form-onl-chk" name="form-onl-chk" >Držim online časove</label></div>
 	<div class="checkbox">
-  	<label><input type="checkbox" id="form-grp-chk" value="">Držim grupne časove</label></div>
+  	<label><input type="checkbox" id="form-grp-chk" name="form-grp-chk" >Držim grupne časove</label></div>
 	</div>
 
 	<div class="modal-form-right">
 	      <div class=form-group>
 	      	<label for="form-edit-name">Ime</label>
-	      	<input id="form-edit-name" value="Ime">
+	      	<input id="form-edit-name" name="form-edit-name" placeholder="Ime">
 	      </div>
 	      <div class=form-group>
 	      	<label for="form-edit-surname">Prezime</label>
-	      	<input id="form-edit-surname" value="Prezime">
+	      	<input id="form-edit-surname" name="form-edit-surname" placeholder="Prezime">
 	      </div>
 	      <div class=form-group>
 	      	<label for="form-edit-city">Grad</label>
-	      	<select id="form-edit-city">
-	      		<option>Beograd</option>
-	      		<option>Novi Sad</option>
-	      		<option>Nis</option>
-	      		<option>Kragujevac</option>
+	      	<select id="form-edit-city" name="form-edit-city">
+	      		<option value="beograd">Beograd</option>
+	      		<option value="novi sad">Novi Sad</option>
+	      		<option value="nis">Nis</option>
+	      		<option value="kragujevac">Kragujevac</option>
 	      	</select>
 	      </div>
 	      <div class=form-group>
 	      	<label for="form-edit-email">Email</label>
-	      	<input id="form-edit-email" value="someone@something.com">
+	      	<input id="form-edit-email" name="form-edit-email" placeholder="someone@something.com">
 	      </div>
 	      <div class=form-group>
 	      	<label for="form-edit-phone">Broj telefona</label>
-	      	<input id="form-edit-phone" value="064/444-44-44">
+	      	<input type="numberic" id="form-edit-phone" name="form-edit-phone" placeholder="0644444444">
 	      </div>
      </div>
       <div class="modal-footer">
@@ -167,7 +169,7 @@
 	<form class="edit-user-profile-form">
 		<div class="form-group">
 			<label for="#email-input">E-mail</label>
-			<input class="form-control" id="email-input"  required>
+			<input class="form-control" id="email-input"  name="email-input">
 		</div>
 
 		<button type="submit" class="btn btn-primary btn-lg">Promeni e-mail</button>
@@ -228,7 +230,28 @@
 </footer>
 
 <script>
-
+$("#tutor-upgrade-form").validate({
+				rules: {
+					"form-edit-name": {required:true},
+					"form-edit-surname": {required:true},
+					"form-edit-email": {required: true, email:true},
+					"form-edit-phone": {required: true, minlength:6, digits:true}
+				},
+				messages: {
+					"form-edit-email": {required: "Unesite e-mail!", email:"Unesite ispravan e-mail!"},
+					"form-edit-name": {required: "Unesite ime!"},
+					"form-edit-surname": {required: "Unesite prezime!"},
+					"form-edit-phone": {required: "Unesite broj telefona!", minlength:"Broj telefona mora da ima najmanje 6 cifara!", digits:"Broj telefona sme da sadrzi samo cifre!"}
+				}
+			});
+$(".edit-user-profile-form").validate({
+				rules: {
+					"email-input": {required: true, email:true},
+				},
+				messages: {
+					"email-input": {required: "Unesite e-mail!", email:"Unesite ispravan e-mail!"},
+				}
+			});
 </script>
 </body>
 </html>

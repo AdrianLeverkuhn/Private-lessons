@@ -11,7 +11,8 @@
 	<!-- jQuery library -->
 	 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   	 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
+  	 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/additional-methods.min.js"></script>
+  	 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
@@ -144,6 +145,21 @@
 		<input type="password" class="form-control" id="tutor-password-confirm" name="tutor-password-confirm">
 	</div>
 
+	<div class="form-group">
+		<label for="tutor-city">Grad</label>
+		<select name="tutor-city" class="form-control" id="tutor-city">
+			<option value="beograd">Beograd</option>
+			<option value="novi sad">Novi Sad</option>
+			<option value="nis">Niš</option>
+			<option value="kragujevac">Kragujevac</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="tutor-phone">Telefon</label>
+		<input type="number" class="form-control" id="tutor-phone" name="tutor-phone">
+	</div>
+
 	<button type="submit" class="btn btn-lg btn-primary">Postani predavač</button>
 </form>
 
@@ -224,13 +240,15 @@ $(document).ready(function() {
 					"tutor-email": {required: true, email:true},
 					"tutor-password": {required: true, minlength:8},
 					"tutor-password-confirm": {required: true, minlength:8, equalTo:"#tutor-password"},
+					"tutor-phone": {required: true, minlength:6, digits:true}
 				},
 				messages: {
 					"tutor-password-confirm": {required: "Unesite lozinku!", minlength:"Lozinka mora sadržati najmanje 8 karaktera!", equalTo:"Lozinke se ne podudaraju!"},
 					"tutor-password": {required: "Unesite lozinku!", minlength:"Lozinka mora sadržati najmanje 8 karaktera!"},
 					"tutor-email": {required: "Unesite e-mail!", email:"Unesite ispravan e-mail!"},
 					"tutor-name": {required: "Unesite ime!"},
-					"tutor-surname": {required: "Unesite prezime!"}
+					"tutor-surname": {required: "Unesite prezime!"},
+					"tutor-phone": {required: "Unesite broj telefona!", minlength:"Broj telefona mora da ima najmanje 6 cifara!", digits:"Broj telefona sme da sadrzi samo cifre!"}
 				}
 			});
 });
