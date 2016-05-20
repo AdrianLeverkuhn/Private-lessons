@@ -9,10 +9,11 @@
 	<link rel="stylesheet" href="css/psi.css">
 
 	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  	 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -91,25 +92,25 @@
 
 <div class="col-sm-5 col-sm-offset-1 student-register">
 
-<form role="form">
+<form id="student-form" role="form">
 	<div class="form-group">
-			<label class="control-label" for="nick">Nadimak</label>
-			<input  class="form-control" id="nick" required/>
+			<label class="control-label" for="student-nick">Nadimak</label>
+			<input  class="form-control" id="student-nick" name="student-nick">
 	</div>
 
 	<div class="form-group">
-		<label for="email">E-mail</label>
-		<input type="email" class="form-control" id="student-email" placeholder="email@email.com" required>
+		<label for="student-email">E-mail</label>
+		<input type="email" class="form-control" id="student-email" placeholder="email@email.com" name="student-email">
 	</div>
 
 	<div class="form-group">
-		<label for="password">Lozinka</label>
-		<input type="password" class="form-control" id="student-password" minlength="8" required>
+		<label for="student-password">Lozinka</label>
+		<input type="password" class="form-control" id="student-password" name="student-password">
 	</div>
 
 	<div class="form-group">
-		<label for="password-confirm">Ponovljena lozinka</label>
-		<input type="password" class="form-control" id="student-password-confirm" minlength="8" required> 
+		<label for="student-password-confirm">Ponovljena lozinka</label>
+		<input type="password" class="form-control" id="student-password-confirm" name="student-password-confirm"> 
 	</div>
 
 	<button type="submit" class="btn btn-lg btn-default">Postani korisnik</button>
@@ -117,30 +118,30 @@
 </div>
 
 <div class="col-sm-5 tutor-register">
-<form role="form">
+<form id="tutor-form" role="form">
 	<div class="form-group">
 		<label for="tutor-name">Ime</label>
-		<input class="form-control" id="tutor-name" placeholder="Petar" required>
+		<input class="form-control" id="tutor-name" placeholder="Petar" name="tutor-name">
 	</div>
 
 	<div class="form-group">
 		<label for="tutor-surname">Prezime</label>
-		<input class="form-control" id="tutor-name" placeholder="Petrovic" required>
+		<input class="form-control" id="tutor-surname" placeholder="Petrovic" name="tutor-surname">
 	</div>
 
 	<div class="form-group">
-		<label for="email">E-mail</label>
-		<input type="email" class="form-control" id="tutor-email" placeholder="email@email.com" required>
+		<label for="tutor-email">E-mail</label>
+		<input type="email" class="form-control" id="tutor-email" placeholder="email@email.com" name="tutor-email">
 	</div>
 
 	<div class="form-group">
-		<label for="password">Lozinka</label>
-		<input type="password" class="form-control" id="tutor-password" minlength="8" required>
+		<label for="tutor-password">Lozinka</label>
+		<input type="password" class="form-control" id="tutor-password" name="tutor-password">
 	</div>
 
 	<div class="form-group">
-		<label for="password-confirm">Ponovljena lozinka</label>
-		<input type="password" class="form-control" id="tutor-password-confirm" minlength="8"  required>
+		<label for="tutor-password-confirm">Ponovljena lozinka</label>
+		<input type="password" class="form-control" id="tutor-password-confirm" name="tutor-password-confirm">
 	</div>
 
 	<button type="submit" class="btn btn-lg btn-primary">Postani predavač</button>
@@ -199,6 +200,41 @@
 		 </ul>
 	</div>
 </footer>
+<script>
+$(document).ready(function() {
+	$("#student-form").validate({
+				rules: {
+					"student-nick": {required: true},
+					"student-email": {required: true, email:true},
+					"student-password": {required: true, minlength:8},
+					"student-password-confirm": {required: true, minlength:8, equalTo:"#student-password"},
+				},
+				messages: {
+					"student-password-confirm": {required: "Unesite lozinku!", minlength:"Lozinka mora sadržati najmanje 8 karaktera!", equalTo:"Lozinke se ne podudaraju!"},
+					"student-password": {required: "Unesite lozinku!", minlength:"Lozinka mora sadržati najmanje 8 karaktera!"},
+					"student-email": {required: "Unesite e-mail!", email:"Unesite ispravan e-mail!"},
+					"student-nick": {required: "Unesite nadimak!"}
+				}
+			});
 
+	$("#tutor-form").validate({
+				rules: {
+					"tutor-name": {required:true},
+					"tutor-surname": {required:true},
+					"tutor-email": {required: true, email:true},
+					"tutor-password": {required: true, minlength:8},
+					"tutor-password-confirm": {required: true, minlength:8, equalTo:"#tutor-password"},
+				},
+				messages: {
+					"tutor-password-confirm": {required: "Unesite lozinku!", minlength:"Lozinka mora sadržati najmanje 8 karaktera!", equalTo:"Lozinke se ne podudaraju!"},
+					"tutor-password": {required: "Unesite lozinku!", minlength:"Lozinka mora sadržati najmanje 8 karaktera!"},
+					"tutor-email": {required: "Unesite e-mail!", email:"Unesite ispravan e-mail!"},
+					"tutor-name": {required: "Unesite ime!"},
+					"tutor-surname": {required: "Unesite prezime!"}
+				}
+			});
+});
+
+</script>
 </body>
 </html>

@@ -18,7 +18,8 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="js/jquery.star-rating-svg.js"></script>
 	<script src="js/jasny-bootstrap.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+	<script src="js/jquery.chained.min.js"></script>   
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
@@ -105,8 +106,9 @@
       <form action="#">
       <textarea id="edit-bio-textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, dicta omnis maiores incidunt laboriosam commodi dolorem minima perspiciatis veniam hic optio, reiciendis tempore nihil aspernatur fugiat ipsa magni quos, doloremque! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi esse, quaerat cumque veritatis facere doloribus dolor ipsa, qui at quidem dicta iste eaque alias omnis et nesciunt nam autem deserunt.</textarea>
       <div class="modal-footer">
+      	<button type="submit" class="btn btn-primary">Sačuvaj</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
-        <button type="submit" class="btn btn-primary">Sačuvaj</button>
+        
       </div>
       </form>
     </div><!-- /.modal-content -->
@@ -136,7 +138,7 @@
   	<div class="checkbox">
   	<label><input type="checkbox" id="form-onl-chk" value="">Držim online časove</label></div>
   	<div class="checkbox">
-  	<label><input type="checkbox" id="form-onl-chk" value="">Držim grupne časove</label></div>
+  	<label><input type="checkbox" id="form-grp-chk" value="">Držim grupne časove</label></div>
 	</div>
 
 	<div class="modal-form-right">
@@ -167,8 +169,9 @@
 	      </div>
      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
         <button type="submit" class="btn btn-primary">Sačuvaj</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
+        
       </div>
       </form>
     </div><!-- /.modal-content -->
@@ -185,21 +188,27 @@
       <form action="#">
       <div class=form-group>
 	      	<label for="form-edit-subject">Oblast</label>
-	      	<select id="form-edit-subject"> <!--Placeholder dok ne uradim JS za ovo-->
-	      		<option>Programiranje</option>
-	      		<option>Jezici</option>
-	      		<option>Instrumenti</option>
-	      		<option>Gitara</option>
+	      	<select id="form-edit-subject" name="form-edit-subject"> 
+	      		<option value="Programiranje">Programiranje</option>
+	      		<option value="Jezici">Jezici</option>
+	      		<option value="Muzika">Muzika</option>
 	      	</select>
 	  </div>
 
 	  <div class=form-group>
 	      	<label for="form-edit-topic">Podoblast</label>
-	      	<select id="form-edit-topic"> <!--Placeholder dok ne uradim JS za ovo-->
-	      		<option>Operativni sistemi</option>
-	      		<option>C/C++</option>
-	      		<option>Pascal</option>
-	      		<option>Web development</option>
+	      	<select id="form-edit-topic" name="form-edit-topic"> 
+	      		<option value="Operativni sistemi" class="Programiranje">Operativni sistemi</option>
+	      		<option value="C/C++" class="Programiranje">C/C++</option>
+	      		<option value="Pascal" class="Programiranje">Pascal</option>
+	      		<option value="Web Development" class="Programiranje">Web development</option>
+	      		<option value="Engleski" class="Jezici">Engleski</option>
+	      		<option value="Francuski" class="Jezici">Francuski</option>
+	      		<option value="Kineski" class="Jezici">Kineski</option>
+	      		<option value="Ruski" class="Jezici">Ruski</option>
+	      		<option value="Gitara" class="Muzika">Gitara</option>
+	      		<option value="Pevanje" class="Muzika">Pevanje</option>
+	      		<option value="Klavir" class="Muzika">Klavir</option>
 	      	</select>
 	  </div>
 
@@ -208,8 +217,8 @@
 	      	<input id="form-edit-price" type="number" required>
 	  </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
         <button type="submit" class="btn btn-primary">Sačuvaj</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>   
       </div>
       </form>
     </div><!-- /.modal-content -->
@@ -627,6 +636,7 @@ $("#present-checkbox-2").click(function() {
 });
 
 $(function() {
+	$("#form-edit-topic").chained("#form-edit-subject");
 	$('#datetimepickercert').datetimepicker();
 	$('#datetimepicker1').datetimepicker();
 	$('#datetimepicker2').datetimepicker({
@@ -653,7 +663,8 @@ $(function() {
   $(".my-rating").starRating({
     initialRating: 4,
     starSize: 25,
-    disableAfterRate: false
+    disableAfterRate: false,
+    readOnly: true
   });
 });
 </script>
