@@ -1,4 +1,10 @@
+<!--
+me130040
+-->
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+
+    
+    
 
 class SubjectModel extends CI_Model{
     public function __construct(){
@@ -37,13 +43,13 @@ class SubjectModel extends CI_Model{
         }
      */
     public function getDisciplines($idSubject){//NOT TESTED
-        $query = $this->db->get_where('Disciplina', array('idPredmet' => $idSubject), 1);
+        $query = $this->db->get_where('Disciplina', array('idPredmet' => $idSubject));
         return $query->result_array();
     }
     
     //string: returns dicipline name by using its $idDiscipline and $idSubject
     public function getDiscipline($idSubject, $idDiscipline){//NOT TESTED
-        $query = $this->db->get_where('Predmet', array('idPredmet' => $idSubject, 'idDisciplina' => $idDiscipline), 1);
+        $query = $this->db->get_where('Disciplina', array('idPredmet' => $idSubject, 'idDisciplina' => $idDiscipline), 1);
         foreach ($query->result() as $row)
         {
             return $row->naziv;
@@ -92,9 +98,10 @@ class SubjectModel extends CI_Model{
         $this->db->where('cena >=', $data['minCena']);
         $this->db->where('cena <=', $data['maxCena']);
         if($data['idPredmet']!=NULL){
-            $this->db->where('idPredmet', $data['idPredmet']);
+            $this->db->where('idPredmet', (int)$data['idPredmet']);
             if($data['idDisciplina']!=NULL)
-                $this->db->where('idDisciplina', $data['idDisciplina']);
+                $this->db->where('idDisciplina', (int)$data['idDisciplina']);
+            file_put_contents("logovi", "ulazi");
         }
         if($data['naAdresu']!=NULL)
             $this->db->where('naAdresu', $data['naAdresu']);
@@ -109,18 +116,41 @@ class SubjectModel extends CI_Model{
             $this->db->order_by('cena', 'ASC');
         if($data['poOceni']!=NULL)
             $this->db->order_by('ukupnaOcena', 'DESC');
+        //file_put_contents("logovi", $this->db->get_compiled_select());
         $query = $this->db->get();
         $result = $query->result_array();;
         if($data['poRelevantnosti']!=NULL){
             $searches = explode(" ", strtolower($data['pretraga']));
             $myResult = array();
+            $cnt = 0;
             foreach($result as $row){
-                $myResult[$row] = $this->relevancePoints($row, $searches);
+                $myResult[$cnt] = array();
+                $myResult[$cnt]['row'] = $row;
+                $myResult[$cnt]['relevance'] = $this->relevancePoints($row, $searches);
+                $cnt++;
             }
-            arsort($myResult);
-            return $myResult;
+            $resutl = array();
+            if(!usort($myResult, array($this,'cmp'))):
+                return $resutl;
+            endif;
+            echo '<pre>';print_r($myResult); echo '</pre>';
+            
+        //file_put_contents("logovi", $string);
+            $cnt = 0;
+            for(; $cnt < sizeof($myResult); $cnt++):
+                $resutl[$cnt] = $myResult[$cnt]['row'];
+            endfor;
+            
+            return $resutl;
         }
         return $result;
+    }
+
+    private function cmp($a, $b)
+    {
+        $raz = (int)$a['relevance'] - (int)$b['relevance'];
+        file_put_contents("logovi", $raz);
+        return $raz * - 1;
     }
     
     private function relevancePoints($tutor, $words){
@@ -135,39 +165,43 @@ class SubjectModel extends CI_Model{
         );
         $total = 0;
         foreach($words as $word){
-            $total += weights['firstName']*substr_count(strtolower($tutor['ime']), $word);
-            $total += weights['lastName']*substr_count(strtolower($tutor['prezime']), $word);
-            $total += weights['region']*substr_count(strtolower($tutor['mesto']), $word);
-            $total += weights['biography']*substr_count(strtolower($tutor['biografija']), $word);
+            if($word != ""):
+            if ($tutor['ime'] !== ""):$total += $weights['firstName']*substr_count(strtolower($tutor['ime']), $word);endif;
+            if ($tutor['prezime'] !== ""):$total += $weights['lastName']*substr_count(strtolower($tutor['prezime']), $word);endif;
+            if ($tutor['mesto'] !== ""):$total += $weights['region']*substr_count(strtolower($tutor['mesto']), $word);endif;
+            if ($tutor['biografija'] !== ""):$total += $weights['biography']*substr_count(strtolower($tutor['biografija']), $word);endif;
             
-            $this->db->select('idTutor');
+            $this->db->select('*');
             $this->db->from('Tutor');
             $this->db->join('Oglas', 'Tutor.idTutor = Oglas.idTutor');
             $this->db->join('Predmet', 'Predmet.idPredmet = Oglas.idPredmet');
             $query = $this->db->get();
             $result = $query->result_array();
             foreach($result as $row){
-                $total += weights['advert']*substr_count(strtolower($row['naziv']), $word);
+                $total += $weights['advert']*substr_count(strtolower($row['naziv']), $word);
             }
             
-            $this->db->select('idTutor');
+            $this->db->select('*');
             $this->db->from('Tutor');
             $this->db->join('Sertifikat', 'Tutor.idTutor = Sertifikat.idTutor');
+            
             $query = $this->db->get();
+            
             $result = $query->result_array();
             foreach($result as $row){
-                $total += weights['certificate']*substr_count(strtolower($row['naziv']), $word);
+                $total += $weights['certificate']*substr_count(strtolower($row['naziv']), $word);
             }
             
-            $this->db->select('idTutor');
+            $this->db->select('*');
             $this->db->from('Tutor');
             $this->db->join('Obrazovanje', 'Tutor.idTutor = Obrazovanje.idTutor');
             $query = $this->db->get();
             $result = $query->result_array();
             foreach($result as $row){
-                $total += weights['education']*substr_count(strtolower($row['institucija']), $word);
-                $total += weights['education']*substr_count(strtolower($row['opis']), $word);
+                $total += $weights['education']*substr_count(strtolower($row['institucija']), $word);
+                $total += $weights['education']*substr_count(strtolower($row['opis']), $word);
             }
+            endif;
         }
         return $total;
     }
