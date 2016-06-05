@@ -7,14 +7,14 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/psi.css">
-	<link rel="stylesheet" href="css/star-rating-svg.css">
+	<link rel="stylesheet" href="css/star-rating.css">
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
 	<!-- Latest compiled JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="js/jquery.star-rating-svg.js"></script>
+	<script src="js/jquery.star-rating.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -230,10 +230,10 @@
 	</div>
 
 	<div class="reviews col-xs-12">
-	<form>
-		<div class="row"><div id="review-rating-value" class="my-rating"></div></div>
+	<form action="#">
+		<div class="row"><input id="input-7-sm" name="input-7" class="rating rating-loading"  value="2" data-min="0" data-max="5" data-step="1.0" data-display-only="true" data-size="sm"></input></div>
 		<div class="row">
-		<textarea id="review-box" placeholder="Unesite tekst recenzije"></textarea>
+		<textarea name="review-text" id="review-box" placeholder="Unesite tekst recenzije"></textarea>
 		</div>
 		<div class="row"><button type="submit" class="btn btn-primary">Oceni</button></div>
 	</form>
@@ -324,17 +324,5 @@
 	</div>
 </footer>
 
-<script>
-$(function() {
-
-  // Za svaki rejting bar
-  $(".my-rating").starRating({
-    initialRating: 4,
-    starSize: 25,
-    disableAfterRate: false,
-    readOnly: true
-  });
-});
-</script>
 </body>
 </html>
