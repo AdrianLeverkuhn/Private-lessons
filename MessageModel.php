@@ -1,3 +1,6 @@
+<!--
+me130040
+-->
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 class MessageModel extends CI_Model{
@@ -15,7 +18,7 @@ class MessageModel extends CI_Model{
      * );
      */
     public function createMessage($data){
-        $data['datum'] = "NOW()";
+        $data['datum'] = (string)date('Y-m-d H:i:s');
         $primaoci = $data['primaoci'];
         unset($data['primaoci']);
         $this->db->insert('Poruka', $data);
@@ -45,6 +48,7 @@ class MessageModel extends CI_Model{
             echo $row['subjekat'];
             echo $row['text'];
             echo $row['datum'];
+     *      echo $row['idPoruka'];
         }
      */
     public function getMessages($idUser){
