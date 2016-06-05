@@ -1,3 +1,6 @@
+<!--
+me130040
+-->
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 class UserModel extends CI_Model{
@@ -95,8 +98,8 @@ class UserModel extends CI_Model{
         $this->db->set('ime', "'$newFirstName'", FALSE);
         $this->db->where("idTutor", $id);
         $this->db->update('Tutor');
-        $last = getLastName($id);
-        $this->setDisplayName($id, $newFirstName." ".$last);
+        $last = $this->getLastName($id);
+        //$this->setDisplayName($id, $newFirstName." ".$last);
     }
     
     //string: returns first name of user with $id, NULL if doesn't exist
@@ -118,7 +121,7 @@ class UserModel extends CI_Model{
         $this->db->where("idTutor", $id);
         $this->db->update('Tutor');
         $first = $this->getFirstName($id);
-        $this->setDisplayName($id, $first." ".$newLastName);
+        //$this->setDisplayName($id, $first." ".$newLastName);
     }
     
     //string: returns last name of user with $id, NULL if doesn't exist
@@ -143,7 +146,7 @@ class UserModel extends CI_Model{
     
     //string: returns display name of user with $id, NULL if doesn't exist
     //display name for tutors, display name is $firstName." ".$lastName
-    public function getDisplayName($id){//NOT TESTED
+    /*public function getDisplayName($id){//NOT TESTED
         $this->db->select('nadimak');
         $this->db->from('Korisnik');
         $this->db->where("idKorisnik", $id);
@@ -153,6 +156,31 @@ class UserModel extends CI_Model{
             return $row->nadimak;
         }
         return NULL;
+    }*/
+    
+    public function getDisplayName($id){//NOT TESTED
+        if($this->isTutor($id)){
+            $this->db->select('ime');
+            $this->db->select('prezime');
+            $this->db->from('Tutor');
+            $this->db->where("idTutor", $id);
+            $query = $this->db->get();
+            foreach ($query->result() as $row)
+            {
+                return $row->ime." ".$row->prezime;
+            }
+            return NULL;
+        }else{
+            $this->db->select('nadimak');
+            $this->db->from('Korisnik');
+            $this->db->where("idKorisnik", $id);
+            $query = $this->db->get();
+            foreach ($query->result() as $row)
+            {
+                return $row->nadimak;
+            }
+            return NULL;
+        }
     }
     
     //void: sets the group class modifier for a user with id $id
@@ -163,43 +191,6 @@ class UserModel extends CI_Model{
         $this->db->update('Tutor');
     }
     
-    //void: sets the online class modifier for a user with id $id
-    //note! $onlineClass argument should be TRUE or FALSE
-    public function setOnlineClass($id, $onlineClass){//NOT TESTED
-        $this->db->set('onlineCasove', "'$onlineClass'", FALSE);
-        $this->db->where("idTutor", $id);
-        $this->db->update('Tutor');
-    }
-    
-    //void: sets the group class modifier for a user with id $id
-    //note! $onAddressClass argument should be TRUE or FALSE
-    public function setOnAddressClass($id, $odAddressClass){//NOT TESTED
-        $this->db->set('naAdresu', "'$onAddresClass'", FALSE);
-        $this->db->where("idTutor", $id);
-        $this->db->update('Tutor');
-    }
-    
-    //bool: returns whether Tutor holds classes on address
-    public function getOnAddressClass($idTutor){//NOT TESTED
-        $query = $this->db->get_where('Tutor', array('idTutor' => $idTutor), 1);
-        foreach ($query->result() as $row)
-        {
-            return $row->naAdresu;
-        }
-        return NULL;
-    }
-    
-    //bool: returns whether Tutor holds classes online
-    public function getOnlineClass($idTutor){//NOT TESTED
-        $query = $this->db->get_where('Tutor', array('idTutor' => $idTutor), 1);
-        foreach ($query->result() as $row)
-        {
-            return $row->onlineCasove;
-        }
-        return NULL;
-    }
-    
-    //bool: returns whether Tutor holds group classes
     public function getGroupClass($idTutor){//NOT TESTED
         $query = $this->db->get_where('Tutor', array('idTutor' => $idTutor), 1);
         foreach ($query->result() as $row)
@@ -209,6 +200,39 @@ class UserModel extends CI_Model{
         return NULL;
     }
     
+    //void: sets the online class modifier for a user with id $id
+    //note! $onlineClass argument should be TRUE or FALSE
+    public function setOnlineClass($id, $onlineClass){//NOT TESTED
+        $this->db->set('onlineCasove', "'$onlineClass'", FALSE);
+        $this->db->where("idTutor", $id);
+        $this->db->update('Tutor');
+    }
+    
+    public function getOnlineClass($idTutor){//NOT TESTED
+        $query = $this->db->get_where('Tutor', array('idTutor' => $idTutor), 1);
+        foreach ($query->result() as $row)
+        {
+            return $row->onlineCasove;
+        }
+        return NULL;
+    }
+    
+    //void: sets the group class modifier for a user with id $id
+    //note! $onAddressClass argument should be TRUE or FALSE
+    public function setOnAddressClass($id, $onAddressClass){//NOT TESTED
+        $this->db->set('naAdresu', "'$onAddressClass'", FALSE);
+        $this->db->where("idTutor", $id);
+        $this->db->update('Tutor');
+    }
+    
+    public function getOnAddressClass($idTutor){//NOT TESTED
+        $query = $this->db->get_where('Tutor', array('idTutor' => $idTutor), 1);
+        foreach ($query->result() as $row)
+        {
+            return $row->naAdresu;
+        }
+        return NULL;
+    }
     
     //void: adds an advert to tutor
     /*
@@ -257,7 +281,7 @@ class UserModel extends CI_Model{
     
     //void: changes the biography of tutor
     public function setBiography($idTutor, $newBiography){//NOT TESTED
-        $this->db->set('biografija', "$newBiography", FALSE);
+        $this->db->set('biografija', "'$newBiography'", FALSE);
         $this->db->where("idTutor", $idTutor);
         $this->db->update('Tutor');
     }
@@ -394,7 +418,7 @@ class UserModel extends CI_Model{
         }
      */
     public function getRatings($idTutor){//NOT TESTED
-        $query = $this->db->get_where('Tutor', array('idTutor' => $idTutor));
+        $query = $this->db->get_where('Ocena', array('idTutor' => $idTutor));
         return $query->result_array();
     }
     
@@ -408,7 +432,7 @@ class UserModel extends CI_Model{
     );
      */
     public function addRating($data){//NOT TESTED
-        $data['datum'] = "NOW()";
+        $data['datum'] = (string)date('Y-m-d H:i:s');
         $this->db->insert('Ocena', $data);
     }
     
@@ -433,6 +457,23 @@ class UserModel extends CI_Model{
         {
             return $row->idKorisnik;
         }
+        return NULL;
+    }
+    
+    //int: returns the id of a user with display name $nick, else NULL
+    public function getIdByDisplayName($nick){
+        $query = $this->db->get_where('Korisnik', array('nadimak' => "$nick"), 1);
+        foreach ($query->result() as $row)
+        {
+            return $row->idKorisnik;
+        }
+        $query = $this->db->get_where('Tutor');
+        foreach($query as $row):
+            $name = $row->ime." ".$row->prezime;
+            if ($nick == $name):
+                return $row->idTutor;
+            endif;
+        endforeach;
         return NULL;
     }
     
@@ -473,7 +514,7 @@ class UserModel extends CI_Model{
         return $id;
     }
     
-    //int: returns NULL if cannot login, else returns id of user, returns 'banned' if the user is banned
+    //int: returns NULL if cannot login, else returns id of user
     public function login($email, $password){
         $query = $this->db->get_where('Korisnik', array('email' => "$email"), 1);
         $hash = 1;
@@ -482,7 +523,6 @@ class UserModel extends CI_Model{
         {
             $hash = $row->sifra;
             $id = $row->idKorisnik;
-            $banovan = $row->banovan;
         }
         if($hash==1)
             return NULL;
@@ -491,13 +531,9 @@ class UserModel extends CI_Model{
             if (password_needs_rehash($hash, PASSWORD_BCRYPT)) {
                 // If so, create a new hash, and replace the old one
                 $newHash = password_hash($password, PASSWORD_BCRYPT);
-                $this->db->set('sifra', "'$newHash'", FALSE);
-                $this->db->where("idKorisnik", $id);
-                $this->db->update('Korisnik');
+                //stavi $newHash u bazu
             }
             //uradi login
-            if($banovan==TRUE)
-                return 'banned';
             return $id;
         }else{
             return NULL;
@@ -527,28 +563,38 @@ class UserModel extends CI_Model{
     
     //void: bans the user with id $id
     public function banUser($id){//NOT TESTED
-        $this->db->set('banovan', "TRUE", FALSE);
+        $this->db->set('banovan', "1", FALSE);
         $this->db->where("idKorisnik", $id);
         $this->db->update('Korisnik');
     }
     
     //void: unbans the user with id $id
     public function unbanUser($id){//NOT TESTED
-        $this->db->set('banovan', "FALSE", FALSE);
+        $this->db->set('banovan', "0", FALSE);
         $this->db->where("idKorisnik", $id);
         $this->db->update('Korisnik');
+    }
+    
+    public function getBanned($id)
+    {
+        $query = $this->db->get_where('Korisnik', array('idKorisnik' => $id), 1);
+        foreach ($query->result() as $row)
+        {
+            return $row->banovan;
+        }
+        return NULL;
     }
     
     //bool: checks if user $id is an admin
     public function isAdmin($id){//NOT TESTED
         $query = $this->db->get_where('Admin', array('idAdmin' => $id), 1);
-        return $query->result()->num_rows() == 1;
+        return sizeof($query->result()) == 1;
     }
     
     //bool: checks if user $id is a tutor
     public function isTutor($id){//NOT TESTED
         $query = $this->db->get_where('Tutor', array('idTutor' => $id), 1);
-        return $query->result()->num_rows() == 1;
+        return sizeof($query->result()) != 0;
     }
     
     //void: deletes the user $id from database
