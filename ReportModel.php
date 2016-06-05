@@ -1,3 +1,6 @@
+<!--
+me130040
+-->
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
 class ReportModel extends CI_Model{
@@ -14,7 +17,7 @@ class ReportModel extends CI_Model{
      * );
      */
     public function createReport($data){
-        $data['datum'] = "NOW()";
+        $data['datum'] = (string)date('Y-m-d H:i:s');
         $this->db->insert('Prijava', $data);
     }
     
