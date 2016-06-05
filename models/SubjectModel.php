@@ -101,7 +101,7 @@ class SubjectModel extends CI_Model{
             $this->db->where('idPredmet', (int)$data['idPredmet']);
             if($data['idDisciplina']!=NULL)
                 $this->db->where('idDisciplina', (int)$data['idDisciplina']);
-            file_put_contents("logovi", "ulazi");
+            //file_put_contents("logovi", "ulazi");
         }
         if($data['naAdresu']!=NULL)
             $this->db->where('naAdresu', $data['naAdresu']);
@@ -149,7 +149,7 @@ class SubjectModel extends CI_Model{
     private function cmp($a, $b)
     {
         $raz = (int)$a['relevance'] - (int)$b['relevance'];
-        file_put_contents("logovi", $raz);
+        //file_put_contents("logovi", $raz);
         return $raz * - 1;
     }
     
