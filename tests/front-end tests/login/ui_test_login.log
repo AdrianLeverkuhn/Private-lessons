@@ -1,0 +1,21 @@
+    [info] Playing test case login_pass
+    [info] Executing: |open | /index.php/home/login | |
+    [info] Executing: |type | id=email | nekimejl@stoje.mejl |
+    [info] Executing: |type | id=password | sifra |
+    [info] Executing: |click | xpath=(//button[@type='submit'])[2] | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Test case passed
+    [info] Playing test case login_mejl
+    [info] Executing: |open | /index.php/home/login | |
+    [info] Executing: |type | id=email | nekimejl.stonijemejl |
+    [info] Executing: |type | id=password | sifraduzaod8 |
+    [info] Executing: |click | xpath=(//button[@type='submit'])[2] | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Test case passed
+    [info] Playing test case login_empty
+    [info] Executing: |open | /index.php/home/login | |
+    [info] Executing: |click | xpath=(//button[@type='submit'])[2] | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Executing: |assertElementPresent | //form[@id='login-form']/div[2]/label[2] | |
+    [info] Test case passed
+    [info] Test suite completed: 3 played, all passed! 

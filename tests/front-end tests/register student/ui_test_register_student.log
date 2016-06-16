@@ -1,0 +1,26 @@
+    [info] Playing test case register_student_nick
+    [info] Executing: |open | /index.php/home/register | |
+    [info] Executing: |type | id=student-email | neki@mejl.com |
+    [info] Executing: |type | id=student-password | sifraduzaod8 |
+    [info] Executing: |type | id=student-password-confirm | sifraduzaod8 |
+    [info] Executing: |click | name=submit | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Test case passed
+    [info] Playing test case register_student_mejl
+    [info] Executing: |open | /index.php/home/register | |
+    [info] Executing: |type | id=student-nick | nadimak |
+    [info] Executing: |type | id=student-email | neki.mejl.kao |
+    [info] Executing: |type | id=student-password | sifraduzaod8 |
+    [info] Executing: |type | id=student-password-confirm | sifraduzaod8 |
+    [info] Executing: |click | name=submit | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Test case passed
+    [info] Playing test case register_student_empty
+    [info] Executing: |open | /index.php/home/register | |
+    [info] Executing: |click | name=submit | |
+    [info] Executing: |assertElementPresent | //form[@id='student-form']/div[2]/label[2] | |
+    [info] Executing: |assertElementPresent | //form[@id='student-form']/div[3]/label[2] | |
+    [info] Executing: |assertElementPresent | //form[@id='student-form']/div[4]/label[2] | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Test case passed
+    [info] Test suite completed: 3 played, all passed! 

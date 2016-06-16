@@ -1,0 +1,25 @@
+    [info] Playing test case register_tutor_empty
+    [info] Executing: |open | /index.php/home/register | |
+    [info] Executing: |click | css=#tutor-form > button[name="submit"] | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Executing: |assertElementPresent | //form[@id='tutor-form']/div[3]/label[2] | |
+    [info] Executing: |assertElementPresent | //form[@id='tutor-form']/div[4]/label[2] | |
+    [info] Executing: |assertElementPresent | //form[@id='tutor-form']/div[5]/label[2] | |
+    [info] Executing: |assertElementPresent | //form[@id='tutor-form']/div[7]/label[2] | |
+    [info] Test case passed
+    [info] Playing test case register_tutor_phone
+    [info] Executing: |open | /index.php/home/register | |
+    [info] Executing: |type | id=tutor-phone | 065 |
+    [info] Executing: |type | id=tutor-password-confirm | lozinkaod8 |
+    [info] Executing: |click | css=#tutor-form > button[name="submit"] | |
+    [info] Executing: |assertElementPresent | //form[@id='tutor-form']/div[7]/label[2] | |
+    [info] Test case passed
+    [info] Playing test case register_tutor_not_matching_passwords
+    [info] Executing: |open | /index.php/home/register | |
+    [info] Executing: |type | id=tutor-password | nekalozinkaod8 |
+    [info] Executing: |type | id=tutor-phone | 065875215 |
+    [info] Executing: |type | id=tutor-password-confirm | nijeistalozinka |
+    [info] Executing: |click | css=#tutor-form > button[name="submit"] | |
+    [info] Executing: |assertElementPresent | css=label.error | |
+    [info] Test case passed
+    [info] Test suite completed: 3 played, all passed! 

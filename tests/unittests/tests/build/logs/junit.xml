@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CodeIgniter Application Test Suite" tests="6" assertions="6" failures="0" errors="0" time="0.268096">
+    <testsuite name="Home_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Home_test.php" tests="2" assertions="2" failures="0" errors="0" time="0.183510">
+      <testcase name="test_login_correct" class="Home_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Home_test.php" line="11" assertions="1" time="0.100193">
+        <system-out>&lt;!--
+sa130068
+--&gt;
+&lt;!--sa130068--&gt;
+</system-out>
+      </testcase>
+      <testcase name="test_login_incorrect" class="Home_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Home_test.php" line="23" assertions="1" time="0.083317">
+        <system-out>&lt;!--
+sa130068
+--&gt;
+</system-out>
+      </testcase>
+    </testsuite>
+    <testsuite name="Profile_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Profile_test.php" tests="2" assertions="2" failures="0" errors="0" time="0.043338">
+      <testcase name="test_has_rating" class="Profile_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Profile_test.php" line="11" assertions="1" time="0.022720">
+        <system-out>&lt;!--
+sa130068
+--&gt;
+&lt;!--sa130068--&gt;
+</system-out>
+      </testcase>
+      <testcase name="test_has_biography" class="Profile_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Profile_test.php" line="20" assertions="1" time="0.020618">
+        <system-out>&lt;!--
+sa130068
+--&gt;
+</system-out>
+      </testcase>
+    </testsuite>
+    <testsuite name="Search_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Search_test.php" tests="2" assertions="2" failures="0" errors="0" time="0.041248">
+      <testcase name="test_search_all" class="Search_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Search_test.php" line="11" assertions="1" time="0.026829">
+        <system-out>&lt;!--
+sa130068
+--&gt;
+&lt;!--sa130068--&gt;
+</system-out>
+      </testcase>
+      <testcase name="test_search_min_price_1000" class="Search_test" file="C:\Users\Aleksandar\Desktop\PureCodeIgniter\application\tests\controllers\Search_test.php" line="22" assertions="1" time="0.014419">
+        <system-out>&lt;!--
+sa130068
+--&gt;
+</system-out>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>
