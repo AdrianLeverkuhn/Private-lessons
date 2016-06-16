@@ -4,6 +4,6 @@ https://github.com/kenjis/ci-phpunit-test/archive/v0.12.1.zip
 
 I uraditi isto sa folderom application/tests
 
-Takodje su u folderu skripte dostupne samo skripte za testiranje kontrolera
+Takodje, u folderu test scripts su dostupne samo skripte za testiranje kontrolera
 
 Svi testovi su radjeni zajedno jer smo se nasli pa smo ih radili na jednom kompjuteru.
