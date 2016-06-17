@@ -1,0 +1,778 @@
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.navbar-default {
+	background-color: transparent;
+}
+
+.btn:active
+{
+	background:#ff4300;
+	color:white;
+}
+
+.btn:focus
+{
+	background:#0291ff;
+	color:white;
+}
+
+.btn:active:focus {
+  color: white; 
+  background-color: #02A1FF; 
+}
+
+body
+{
+	min-width:725px;
+	background-image: url("../img/pattern.png");
+	background-repeat:repeat;
+}
+
+.glyphicon-heart, .glyphicon-remove 
+{
+	color:#ff4300;
+}
+
+.search-fail
+{
+	text-align: center;
+}
+.glyphicon-globe, .glyphicon-ok
+{
+	color:#0291ff;
+}
+
+.search-profile
+{
+	background:#f0f0f0;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+.search-menu .menu-body
+{
+	border:none;
+}
+.sort-menu .menu-body
+{
+	line-height:2em;
+	font-size:1.3em;
+	background:white;
+}
+
+.sort-menu ul li
+{
+	display:inline;
+	padding: 10px;
+}
+
+.sort-menu ul, .sort-text
+{
+	display: inline-block;
+}
+.price-field
+{
+	background:#ff4300;
+	color:white;
+}
+
+.search-profile a h4
+{
+	font-size:20px;
+	color: #3d3d3d;
+}
+
+.search-profile a:hover
+{
+	color: #3d3d3d;
+
+}
+
+.search-menu input
+{
+	width:30% !important;
+	padding-left:5px;
+}
+
+.search-menu .row
+{
+	background:#0291ff;
+	padding: 15px 0;
+}
+.search-menu input, .search-menu select
+{
+	background: #45aeff;
+	border-radius: 5px;
+	border: none;
+	color:white;
+	font-size: 1.5em;
+}
+
+.search-menu select
+{
+	max-width: 150px;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.search-menu label
+{
+	font-height: 30px;
+	color:white;
+	padding-right:15px;
+}
+.price-heading
+{
+	font-size:20px;
+	line-height: 20px;
+	padding-left:15px;
+	font-weight: bold;
+	padding-top:5px;
+}
+
+.search-menu .input
+{
+	width: 1;
+}
+.search-profile .my-rating
+{
+	padding-top:10px;
+	padding-left:15px;
+}
+.price
+{
+	font-size:30px;
+	line-height:45px;
+	padding-left:15px;
+	font-weight:700;
+}
+.glyphicon-remove, .glyphicon-ok
+{
+	padding-left:5px;
+}
+.experience-name .glyphicon-remove
+{
+	padding-left:0px;
+}
+
+.glyphicon-check
+{
+	color:darkgreen;
+}
+td .glyphicon-remove
+{
+	padding-left:15px;
+}
+
+.messages
+{
+	margin-top:47px;
+}
+
+.message a
+{
+	font-weight: bold;
+}
+.subject-message
+{
+	padding: 0 10%;
+}
+.message
+{
+	font-size: 14px;
+	background: #e3e3f3;
+	line-height: 2.4em;
+	border-radius:5px;
+	border: solid 1px #0291ff;
+	margin: 0.43em;
+	padding-left: 15px;
+}
+
+.unread.message
+{
+	color:white;
+	background:#0291ff;
+}
+
+.unread.message a
+{
+	color:white;
+}
+
+.unread + .subject-message a:hover
+{
+	color:white;
+}
+
+.send-message-form textarea
+{
+	height:20em;
+}
+#work-modal input, #edu-modal input
+{
+	width:100%;
+}
+
+#present-checkbox-2,#present-checkbox, #present-label
+{
+	width:auto !important;
+	display:inline-block;
+}
+
+.change-password-form, .send-message-form, .edit-user-profile-form
+{
+	margin-top:30px;
+}
+
+.user-profile .btn
+{
+	margin: 10px 0;
+}
+
+.change-password-form label
+{
+	display:block;
+}
+.modal-sm .modal-content
+{
+	padding-left:10%;
+	padding-right:10%;
+}
+
+.modal label
+{
+	display:block;
+}
+.modal-content
+{
+	padding-top:15px;
+}
+.modal-form-right
+{
+	width:40%;
+	float:right;
+	padding-right:15px;
+}
+
+.modal-form-left
+{
+	width:40%;
+	float:left;
+	padding-left:30px;
+}
+
+.modal-footer
+{
+	clear:both;
+}
+
+.glyphicon-flag
+{
+	right:-5px;
+	top:-15px;
+	position:relative;
+	font-size:0.5em;
+	color: red;
+}
+
+.basic-profile .glyphicon-pencil, h2 .glyphicon-plus, h2 .glyphicon-pencil, .experience-name .glyphicon-remove
+{
+	font-size:10pt;
+	position:relative;
+	top:-1em;
+	right:-0.4em;
+}
+.sloth
+{
+	height: 100px;
+	width:100px;
+	padding:0;
+}
+.menu-body
+{
+	background-color: #0291ff;
+	padding-left:0px;
+	border-bottom: solid 1px white;
+    border-left: solid 1px white;
+    border-right: solid 1px white;
+}
+#category-block
+{
+	display:inline-block;
+	width:75%;
+}
+.rate-data
+{
+	padding-top:15px;
+}
+
+.navbar-nav li a
+{
+	color: white !important;
+}
+
+#searchBoxMain
+{
+	background: #45aeff !important;
+	color:white;
+	border: none !important;
+	width:100%;
+}
+
+#searchBoxMain::-webkit-input-placeholder
+{
+	color:white;
+}
+.navbar-brand
+{
+	padding: 0;
+	color: white !important;
+	font-weight: 700 !important;
+	font-size: 2em !important;
+	margin: auto 0;
+	background: #FF4300;
+	height:100px;
+	text-align: center;
+	margin-left:0;
+	border-right: solid white 1px;
+	line-height:70px;
+}
+
+.navbar-nav li a:hover
+{
+	text-decoration: underline;
+}
+.btn-primary
+{
+	background:  #FF4300;
+	border-color: #FF4300;
+}
+
+.btn-primary:hover
+{
+	background:  #DD2100;
+	border-color: #DD2100;
+}
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 100%;
+}
+
+.no-padding
+{
+	padding: 0px;
+}
+.navbar-header
+{
+	padding-left: 0px;
+}
+
+.navbar-brand:hover
+{
+	background-color: #FF4300 !important;
+}
+
+.no-padding-left
+{
+	padding-left:0px;
+}
+.loginPage, .lost-password, .main-body, .page
+{
+	padding-top:130px;
+	padding-bottom:30px;
+	background:white;
+}
+
+.basic-profile .btn
+{
+	margin-top:10px;
+}
+
+.basic-profile
+{
+	background: #f3f3f3;
+	margin-top: 20px;
+	font-size:1.8em;
+}
+
+.experience-name
+{
+	font-size:1.5em;
+	color:#3d3d3d;
+}
+
+
+.experience-time
+{
+	font-size:1.3em;
+	color:#3d3d3d;
+	padding-top:3px;
+}
+.experience-employer 
+{
+	font-size:1em;
+	color:#3d3d3d;
+	font-weight: bold;
+	margin-bottom:10px;
+	
+}
+
+.profile-name
+{
+	font-size:1.6em;
+	display:inline-block;
+}
+
+.profile-city, .profile-email, .profile-phone
+{
+	line-height: 1.5em;
+	font-size:0.75em;
+}
+
+.profile-reviewer
+{
+	color:#3d3d3d;
+	font-weight:bold;
+
+}
+.experience-item
+{
+	margin: 30px auto;
+}
+
+.experience
+{
+	padding-left:15px;
+}
+.tutor-register
+{
+	border-left: solid 1px #0291ff;
+}
+.carousel
+{
+	padding:0px;
+	width:100%;
+}
+
+.predavaci
+{
+	padding-top:10px;
+	background: white;
+}
+
+.predavaci .row h2
+{
+	text-align:center;
+	font-weight: 700;
+	color: #0291ff;
+	margin-bottom:40px;
+}
+
+.select-city
+{
+	background-color: #45aeff;
+	border: none;
+	color:white;
+}
+#menu-button
+{
+	width:100%;
+}
+
+.grade
+{
+	bottom:0;
+	position:absolute;
+	background: rgba(0,0,0,0.7);
+	color:white;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	line-height:2em;
+	opacity:0;
+	transition: opacity 0.2s;
+	font-size:2rem;
+}
+
+.img-responsive:hover + .grade
+{
+	opacity:1;
+}
+
+.grade:hover
+{
+	opacity:1;
+}
+
+.no-margin
+{
+	margin:0 !important;
+}
+
+.predavac
+{
+	display:inline-block;
+}
+
+.rateTutorExample
+{
+	background: #0291ff;
+	color:white;
+}
+
+.review-example
+{
+	background:white;
+	color:#3d3d3d;
+	padding:15px;
+	border-radius:5px;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.review-example a
+{
+	color: #3d3d3d;
+}
+
+form textarea
+{
+	width:100%;
+	height:6em;
+	resize:none;
+}
+
+
+
+ .review-item-profile .row:first-child
+{
+	padding-top:10px;
+	border-top: solid 1px #0291ff;
+}
+.review-item-profile
+{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.review-text
+{
+	color:black;
+}
+
+.grade-stars
+{
+	color:#fde16d;
+}
+
+a.link-tutor
+{
+	display:block:inline;
+}
+
+.grade-name
+{
+	padding-left:15px;
+	float:left;
+}
+
+.logreg
+{
+	font-weight:bold;
+}
+.grade .grade-stars
+{
+	float:right;
+	padding-right:10px;
+}
+
+.moreTeachers
+{
+	text-align: center;
+	font-size: 30pt;
+	color: #0291ff;
+}
+
+.moreTeachers a:hover
+{
+	text-decoration: none;
+	color: #FF4300;
+}
+
+.rating-custom:last-child
+{
+	margin-top:60px;
+}
+
+.tutor-data-example
+{
+	padding-top:15px;
+	font-weight:700;
+}
+
+
+footer
+{
+	background: #0475cb;
+	color:white;
+}
+
+footer ul
+{
+	list-style: none;
+}
+
+footer ul li a
+{
+	color:white;
+}
+
+footer ul li a:hover
+{
+	color:white;
+}
+
+.callToActionSection
+{
+	background:white;
+}
+
+.tutor-call
+{
+	text-align:center;
+	border-bottom: solid 1px #0291ff;
+	padding-bottom:30px;
+	padding-top:10px;
+}
+
+.student-call
+{
+	text-align:center;
+	padding-bottom:30px;
+}
+
+.btn-default
+{
+	background: #0291ff;
+	color:white;
+}
+
+.btn-default:hover
+{
+	background: #0475cb;
+	color:white;
+}
+
+.callToActionSection h3
+{
+	text-transform: uppercase;
+}
+
+.callToActionSection p
+{
+	font-size:12pt;
+	padding: 20px;
+}
+
+.rateTutorExample h2
+{
+	text-align:center;
+}
+
+.rateTutorExample
+{
+	padding-bottom:30px;
+}
+
+.error-message, .error
+{
+	color:red;
+	font-weight:700;
+}
+@media screen and (max-width: 767px) {
+
+.page
+{
+	padding-top:80px;
+}
+	.profile-name
+{
+	padding-top:10px;
+	font-size:1.2em;
+
+}
+	.tutor-register
+{
+	border-left: none;
+}
+	.sloth
+	{
+		margin-right:15px;
+		height:50px;
+		width:50px;
+	}
+    .navbar-default {
+        background-color: #FF4E00;
+    }
+
+    .navbar-brand
+    {
+    	padding-top:5px;
+    	padding-left:0px;
+    	height:56px;
+    	line-height:100%;
+    }
+
+    .menu-body
+    {
+    	background: #FF4300;
+    }
+
+    #searchBoxMain
+{
+	background: white !important;
+	color:#3d3d3d;
+	width:100%;
+	margin-top:10px;
+}
+
+.select-city
+{
+	background-color: white;
+	border: none;
+	color: #3d3d3d;
+}
+
+#menuButton
+{
+	margin: 10px 0;
+	background: #0291ff;
+	color:white;
+	height:40px;
+}
+
+#menuButton:hover
+{
+	background: #0270dd;
+}
+}
+
+@media screen and (min-width: 1200px)
+{
+.logreg
+{
+	padding-left:40px;
+}
+}
+
+@media screen and (min-width: 768px) and (max-width:991px)
+{
+.logreg
+{
+	margin-left:-10px;
+}
+}
