@@ -27,10 +27,12 @@ class Home extends CI_Controller {
     }
 
     public function index() {
+        
         if(isset($_SESSION['initialSearcgString'])):
             unset($_SESSION['initialSearcgString']);
         endif;
         $this->load->model('subjectmodel');
+        $this->load->model('usermodel');
         $search = array(
             'minCena' => NULL,
             'maxCena' => NULL,
@@ -46,7 +48,26 @@ class Home extends CI_Controller {
             'pretraga' => "",
             'banovan' => false
         );
-        $data['results'] = array(); //$this->subjectmodel->getTutorsByCriteria($search);
+        $data['results'] = array(); 
+        $data['results'][0] = array(
+            'idTutor' => 71,
+            'slika' => $this->usermodel->getImage(71),
+            'ime' => $this->usermodel->getDisplayName(71),
+            'ukupnaOcena' => $this->usermodel->getOverallRating(71)
+        );
+        $data['results'][1] = array(
+            'idTutor' => 81,
+            'slika' => $this->usermodel->getImage(81),
+            'ime' => $this->usermodel->getDisplayName(81),
+            'ukupnaOcena' => $this->usermodel->getOverallRating(81)
+        );
+        $data['results'][2] = array(
+            'idTutor' => 91,
+            'slika' => $this->usermodel->getImage(91),
+            'ime' => $this->usermodel->getDisplayName(91),
+            'ukupnaOcena' => $this->usermodel->getOverallRating(91)
+        );
+        
         $this->load->view('templates/header');
         $this->load->view('home/homeScripts');
         $this->load->view('templates/menubar');
@@ -324,12 +345,9 @@ class Home extends CI_Controller {
                     show_404();
                 endif;
                 $city = $_POST['city'];
-                if (!isset($_POST['phone']) || !$this->validation->Phone($_POST['phone'])):
-                    $failed |= PASSWORDMATCH;
-                endif;
+
                 $phone = $_POST['phone'];
-
-
+                
                 if ($failed == TUTOR):
                     $user = array(
                         'ime' => $fname,
@@ -339,11 +357,11 @@ class Home extends CI_Controller {
                     );
                     $userID = $this->UserModel->createTutor($user);
                     
-                    $this->usermodel->setContact($userID, $phone);
-                    $this->userModel->setRegion($userID, $city);
+                    $this->UserModel->setContact($userID, $phone);
+                    $this->UserModel->setRegion($userID, $city);
                     
                     $_SESSION['userID'] = $userID;
-                    $_SESSION['userName'] = $this->UserModel->getDisplayName($user);
+                    $_SESSION['userName'] = $this->UserModel->getDisplayName($userID);
 
                     redirect(site_url() . '/home/index');
                 //$this->index();

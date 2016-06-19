@@ -376,7 +376,7 @@ class UserModel extends CI_Model{
     //void: removes the certificate
     public function removeCertificate($idCertificate){//NOT TESTED
         $this->db->where('idSertifikat', $idCertificate);
-        $this->db->delete('Serifikat');
+        $this->db->delete('Sertifikat');
     }
     
     //array: reutrns all of work experiences for tutor $idTutor
@@ -577,7 +577,7 @@ class UserModel extends CI_Model{
     
     public function getBanned($id)
     {
-        $query = $this->db->get_where('Korisnik', array('idKorisnik' => $id), 1);
+        $query = $this->db->get_where('Korisnik', array('idKorisnik' => $id));
         foreach ($query->result() as $row)
         {
             return $row->banovan;

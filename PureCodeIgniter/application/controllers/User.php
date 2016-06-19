@@ -43,7 +43,7 @@ class User extends CI_Controller {
 
 
         $cnt = 0;
-        if ($data['loggedIn'] && $profileID = $_SESSION['userID']):
+        if ($data['loggedIn'] && $profileID == $_SESSION['userID']):
             $data['onAddress'] = $this->usermodel->getOnAddressClass($_SESSION['userID']);
             $data['online'] = $this->usermodel->getOnlineClass($_SESSION['userID']);
             $data['group'] = $this->usermodel->getGroupClass($_SESSION['userID']);
@@ -59,7 +59,7 @@ class User extends CI_Controller {
             );
             $cnt++;
         endforeach;
-        $data['banned'] = $this->usermodel->getBanned($profileID) == 1;
+        $data['banned'] = $this->usermodel->getBanned($profileID);
         $data['workExperience'] = $this->usermodel->getWorkExperience($profileID);
         $data['certificates'] = $this->usermodel->getCertificates($profileID);
         $data['education'] = $this->usermodel->getEducation($profileID);
@@ -67,6 +67,7 @@ class User extends CI_Controller {
         $data['displayName'] = $this->usermodel->getDisplayName($profileID);
         $data['ratings'] = array();
         $this->load->model('subjectmodel');
+        $data['ocenio'] = false;
         $data['subjects'] = $this->subjectmodel->getSubjects();
         if (sizeof($ratings) != 0):
             $i = 0;
@@ -76,6 +77,9 @@ class User extends CI_Controller {
                 $data['ratings'][$i]['ocena'] = $rating['ocena'];
                 $data['ratings'][$i]['datum'] = $rating['datum'];
                 $data['ratings'][$i]['ocenjivac'] = $this->usermodel->getDisplayName($rating['idKorisnik']);
+                if(isset($_SESSION['userID']) && $rating['idKorisnik'] == $_SESSION['userID']):
+                    $data['ocenio'] = true;
+                endif;
                 $i++;
             endforeach;
         else:
@@ -155,7 +159,6 @@ class User extends CI_Controller {
 
 
         $this->load->library('upload', $config);
-        $slika = "06+";
         if ($this->upload->do_upload('userfile')) {
             $data = array('upload_data' => $this->upload->data());
             $slika = "/img/" . $profileID . $this->upload->data()['file_ext'];
@@ -197,7 +200,7 @@ class User extends CI_Controller {
         $messages = $this->messagemodel->getMessages($profileID);
         $cnt = 0;
         foreach ($messages as $message):
-            $cnt += $message['procitana'];
+            $cnt += !$message['procitana'];
         endforeach;
         return $cnt;
     }
@@ -293,13 +296,14 @@ class User extends CI_Controller {
             if (isset($stariMejl) && $format == 0):
                 $this->usermodel->setEmail($profileID, $mejl);
             endif;
-
+            
+            $slika = "";
             
             
             if (isset($input_file_field_name)):
                 $config['upload_path'] = './profileimgs/';
                 $config['allowed_types'] = 'jpeg|jpg|png';
-                $config['max_size'] = 1024;
+                $config['max_size'] = 1048576;
                 $config['max_width'] = 1024;
                 $config['max_height'] = 1024;
                 $config['file_name'] = "" . $profileID . "." . end(explode(".", $_FILES[$input_file_field_name]['name']));
@@ -307,7 +311,7 @@ class User extends CI_Controller {
 
 
                 $this->load->library('upload', $config);
-                $slika = "";
+                
                 if ($this->upload->do_upload('userfile')) {
                     $data = array('upload_data' => $this->upload->data());
                     $slika = "/img/" . $profileID . $this->upload->data()['file_ext'];
@@ -321,7 +325,7 @@ class User extends CI_Controller {
             
             if ($ime == NULL || $prezime == NULL || $grad == NULL || $telefon == NULL):
                 //redirect(site_url()/* . "/user/profile/" . $profileID*/);
-                show_404();
+                redirect("/user/profile/" . $profileID);
             endif;
             $format = 0;
             if (!$this->validation->Email($mejl)):
@@ -352,12 +356,12 @@ class User extends CI_Controller {
                     'slika' => $slika,
                 );
                 $this->usermodel->upgradeToTutor($profileID, $tutorData);
-                if ($slika != ""):
+                if (strcmp($slika, "") != 0):
                     $this->usermodel->setImage($idTutor, $slika);
                 endif;
             else:
                 $_SESSION['editInforError'] = $format;
-                redirect(site_url()/* . "/user/profile/" . $profileID */);
+                redirect(site_url() . "/user/profile/" . $profileID );
             endif;
             redirect(site_url() . "/user/profile/" . $profileID);
         else:
@@ -373,7 +377,7 @@ class User extends CI_Controller {
             show_404();
         endif;
         if (!isset($_POST['price']) || !isset($_POST['subject']) || !isset($_POST['discipline'])):
-            show_404();
+            redirect("/user/profile/" . $profileID);
         endif;
         $subject = $_POST['subject'];
         $discipline = $_POST['discipline'];
@@ -381,8 +385,8 @@ class User extends CI_Controller {
         $this->load->model('subjectmodel');
         $this->load->model('usermodel');
 
-        if ($this->subjectmodel->getSubject($subject) == NULL || $this->subjectmodel->getDiscipline($subject, $discipline)):
-            show_404();
+        if ($this->subjectmodel->getSubject($subject) == NULL || $this->subjectmodel->getDiscipline($subject, $discipline) == NULL):
+            redirect("/user/profile/" . $profileID);
         endif;
 
         $data = array(
@@ -402,20 +406,30 @@ class User extends CI_Controller {
         $this->load->model('usermodel');
 
         $jobName = isset($_POST['jobName']) ? $_POST['jobName'] : "";
+        if (strlen($jobName) > 45):
+            $temp = substr($jobName, 0, 42);
+            $jobName = $temp. "...";
+        endif;
         $employer = isset($_POST['employer']) ? $_POST['employer'] : "";
+        if (strlen($employer) > 45):
+            $temp = substr($employer, 0, 42);
+            $employer = $temp. "...";
+        endif;
         $startDate = isset($_POST['startDate']) ? $_POST['startDate'] : "";
         $endDate = isset($_POST['endDate']) ? $_POST['endDate'] : "";
         $stillWorking = isset($_POST['stillWorking']) ? $_POST['stillWorking'] : false;
 
+        $opis = isset($_POST['description'])? $_POST['description'] : "";
+        
         if ($employer == "" || $jobName == "" || $startDate == "" || ($endDate == "" && $stillWorking == false)):
-            show_404(); //change this
+            redirect("/user/profile/" . $profileID);
         else:
             $work = array(
                 'idTutor' => $profileID,
                 'naziv' => $jobName,
                 'poslodavac' => $employer,
-                'period' => $startDate . " - " . ($stillworking ? "Još Traje" : $endDate),
-                'opis' => ""
+                'period' => $startDate . " - " . ($stillWorking ? "Još Traje" : $endDate),
+                'opis' => $opis
             );
             $this->usermodel->addWorkExperience($work);
             redirect("/user/profile/" . $profileID);
@@ -429,20 +443,30 @@ class User extends CI_Controller {
         $this->load->model('usermodel');
 
         $school = isset($_POST['school']) ? $_POST['school'] : "";
+        if (strlen($school) > 90):
+            $temp = substr($school, 0, 87);
+            $school = $temp. "...";
+        endif;
         $name = isset($_POST['name']) ? $_POST['name'] : "";
+        if (strlen($name) > 45):
+            $temp = substr($name, 0, 42);
+            $name = $temp. "...";
+        endif;
         $startDate = isset($_POST['startDate']) ? $_POST['startDate'] : "";
         $endDate = isset($_POST['endDate']) ? $_POST['endDate'] : "";
         $ongoing = isset($_POST['ongoing']) ? $_POST['ongoing'] : false;
 
+        $opis = isset($_POST['description'])? $_POST['description'] : "";
+        
         if ($school == "" || $name == "" || $startDate == "" || ($endDate == "" && $ongoing == false)):
-            show_404(); //change this
+            redirect("/user/profile/" . $profileID);
         else:
             $education = array(
                 'idTutor' => $profileID,
                 'institucija' => $school,
                 'nivo' => $name,
-                'period' => $startDate + " - " + ($endDate == "" ? "Još Traje" : $endDate),
-                'opis' => ""
+                'period' => $startDate . " - " . ($endDate == "" ? "Još Traje" : $endDate),
+                'opis' => $opis
             );
             $this->usermodel->addEducation($education);
             redirect("/user/profile/" . $profileID);
@@ -456,11 +480,19 @@ class User extends CI_Controller {
         $this->load->model('usermodel');
 
         $institution = isset($_POST['institution']) ? $_POST['institution'] : "";
+        if (strlen($institution) > 45):
+            $temp = substr($institution, 0, 42);
+            $institution = $temp. "...";
+        endif;
         $name = isset($_POST['name']) ? $_POST['name'] : "";
+        if (strlen($name) >=45):
+            $temp = substr($name, 0, 42);
+            $name = $temp. "...";
+        endif;
         $expires = isset($_POST['expires']) ? $_POST['expires'] : "";
 
         if ($institution == "" || $name == "" || $expires == ""):
-            show_404(); //change this
+            redirect("/user/profile/" . $profileID);
         else:
             $certificate = array(
                 'idTutor' => $profileID,
@@ -484,7 +516,7 @@ class User extends CI_Controller {
 
         $reason = isset($_POST['reason']) ? $_POST['reason'] : "";
         if ($reason == ""):
-        //show_404();//change this
+            redirect("/user/profile/" . $profileID);
         else:
             $report = array(
                 'idPosiljalac' => $_SESSION['userID'],

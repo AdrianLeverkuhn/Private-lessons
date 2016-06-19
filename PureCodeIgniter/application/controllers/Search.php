@@ -12,27 +12,23 @@ class Search extends CI_Controller {
     }
     
     public function index($sorting = RELEVANCE)
-    {
-        if (!isset($_POST['city'])):
-            //user didn't come here through our search form or there was an error
-            show_404();
-        endif;
-        
+    {       
         $this->load->model('subjectmodel');
         
         $searchData = array();
+        $city = isset($_GET['city'])? $_GET['city'] : "";
         
-        $searchData['pretraga'] =   isset($_POST['searchString'])? $_POST['searchString']." ".$_POST['city'] :
-                                    $_POST['city'];
-        $_SESSION['initialSearcgString'] = isset($_POST['searchString'])? $_POST['searchString']:" ";
+        $searchData['pretraga'] =   isset($_GET['searchString'])? $_GET['searchString']." ".$city :
+                                    $city;
+        $_SESSION['initialSearcgString'] = isset($_GET['searchString'])? $_GET['searchString']:" ";
         $_SESSION['searchString'] = $searchData['pretraga'];
-        $searchData['minCena']= isset($_POST['cenaMin']) && $_POST['cenaMin'] != ""? $_POST['cenaMin'] : 0;
-        $searchData['maxCena']= isset($_POST['cenaMax']) && $_POST['cenaMax'] != ""? $_POST['cenaMax'] : 10000;
-        $searchData['idPredmet']= isset($_POST['subject']) && $_POST['subject'] != "-1" ? $_POST['subject'] : NULL;
-        $searchData['idDisciplina']= isset($_POST['discipline']) && $_POST['discipline'] != "-1" ? $_POST['discipline'] : NULL;
-        $searchData['naAdresu']= isset($_POST['type'])? $_POST['type'] == ONADDRESS : NULL;
-        $searchData['onlineCasove']= isset($_POST['type'])? $_POST['type'] == ONLINE : NULL;
-        $searchData['grupneCasove']= isset($_POST['type'])? $_POST['type'] == GROUP : NULL;
+        $searchData['minCena']= isset($_GET['cenaMin']) && $_GET['cenaMin'] != ""? $_GET['cenaMin'] : 0;
+        $searchData['maxCena']= isset($_GET['cenaMax']) && $_GET['cenaMax'] != ""? $_GET['cenaMax'] : 10000;
+        $searchData['idPredmet']= isset($_GET['subject']) && $_GET['subject'] != "-1" ? $_GET['subject'] : NULL;
+        $searchData['idDisciplina']= isset($_GET['discipline']) && $_GET['discipline'] != "-1" ? $_GET['discipline'] : NULL;
+        $searchData['naAdresu']= isset($_GET['type'])? $_GET['type'] == ONADDRESS : NULL;
+        $searchData['onlineCasove']= isset($_GET['type'])? $_GET['type'] == ONLINE : NULL;
+        $searchData['grupneCasove']= isset($_GET['type'])? $_GET['type'] == GROUP : NULL;
         $searchData['poOpadajucojCeni']= $sorting == PRICEHIGH ? TRUE: NULL;
         $searchData['poRastucojCeni']= $sorting == PRICELOW ? TRUE: NULL;
         $searchData['poOceni']= $sorting == RATING ? TRUE: NULL;

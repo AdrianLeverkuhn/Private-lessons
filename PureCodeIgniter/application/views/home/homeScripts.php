@@ -34,4 +34,7 @@ sa130068
 		});
 	</script>
 
+        <script src="<?php echo base_url(); ?>/js/jquery.star-rating.js"></script>
+
+        
 	<meta name="viewport" content="width=device-width, initial-scale=1">

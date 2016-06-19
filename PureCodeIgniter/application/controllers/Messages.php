@@ -159,12 +159,11 @@ class Messages extends CI_Controller
         if (isset($id) && is_numeric($id)):
             foreach($this->reportmodel->getReports() as $report):
                 if ($report['idPrijava'] == $id):
-                    echo ($this->usermodel->getBanned($report['idPrimalac']) === TRUE? "Unban" : "Ban");
-                return;
+                    echo ($this->usermodel->getBanned($report['idPrimalac'])? "Unban" : "Ban");
+                    return;
                 endif;
             endforeach;
         endif;
-        echo"err";
     }
     
     public function reports($page = 1)
@@ -233,7 +232,7 @@ class Messages extends CI_Controller
         $messages = $this->messagemodel->getMessages($profileID);
         $cnt = 0;
         foreach($messages as $message):
-            $cnt += $message['procitana'];
+            $cnt += !$message['procitana'];
         endforeach;
         return $cnt;
     }

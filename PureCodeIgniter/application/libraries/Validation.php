@@ -1,8 +1,8 @@
 <!--sa130068-->
 <?php
-define("EMAILCHECK", "/^[a-zA-ZčćžđšŠĐŽĆČ][a-zA-Z\dčćžđšŠĐŽĆČ]*@[a-zA-Z]+\.[a-zA-Z]+$/");
+define("EMAILCHECK", "/^[a-zA-ZčćžđšŠĐŽĆČ][.a-zA-Z\dčćžđšŠĐŽĆČ]*@[a-zA-Z]+\.[a-zA-Z]+$/");
 define("NAMECHECK", "/^[A-ZŠĐŽĆČ][a-zčćžđš]+ ?[a-zčćžđš]+$/");
-define("PHONECHECK", "/^\d{3}\?/\d{3}\-?\d{2}\-?\d\d?$/");
+define("PHONECHECK", "/^\d*$/");
 define("NICKNAMECHECK", "/^[a-zA-ZčćžđšŠĐŽĆČ]+$/");
 define("PASSWORDCHECK", "/.*/");
 
@@ -15,7 +15,7 @@ class Validation
 	
 	public static function Phone($input)
 	{
-		return preg_match(PHONECHECK, $input) === 1;
+		return (strlen($input) == 9 ||  strlen($input) == 10) && preg_match(PHONECHECK, $input) === 1;
 	}
 	
 	public static function Name($input)
@@ -35,7 +35,7 @@ class Validation
 	
         public static function PasswordMatch($input1, $input2)
         {
-            return $input1 == $input2;
+            return strcmp($input1, $input2) == 0;
         }
 }
 

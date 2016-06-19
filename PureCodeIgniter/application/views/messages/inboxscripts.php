@@ -81,14 +81,11 @@ sa130068
 <script>
     function sentence(ele) {
         var id = ele.name;
-        if (ele.innerHTML == "Ban")
-            ele.innerHTML = "Unban";
-        else
-            ele.innerHTML = "Ban";
         $.ajax({
             type:'POST',
             url:'<?php echo site_url() . "/user/sentence"; ?>',
-            data:{'id': id},success:function(data){
+            data:{'id': id},
+            success:function(data){
                 ele.innerHTML =data;
             },
         });

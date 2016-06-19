@@ -47,7 +47,7 @@ sa130068
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Izmeni osnovne podatke</h4>
+                        <h4 class="modal-title">Postani tutor</h4>
                     </div>
                     <form action="<?php echo site_url();
                                         echo $isTutor?
@@ -127,7 +127,7 @@ sa130068
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Izađi</button>
-                            <button type="submit" class="btn btn-primary" value="upload">Sačuvaj</button>
+                            <button type="submit" class="btn btn-primary" value="upload">Postani tutor</button>
                         </div>
                     </form>
                 </div><!-- /.modal-content -->
@@ -172,7 +172,7 @@ sa130068
                             endforeach;
                             ?>
                         </select>
-                        <select name="disciplines" id="disciplines">
+                        <select name="discipline" id="disciplines">
                             
                         </select>
                         </div>
@@ -241,7 +241,10 @@ sa130068
                             <input name="stillWorking" type="checkbox" id="present-checkbox">
                             <label id="present-label" for="#present-checkbox">Još traje</label>  	
                         </div>
-
+                        <div class="form-group">
+                            <label for="#description">Opis:</label>
+                            <textarea id="description" name="description"></textarea>
+                        </div>
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Sačuvaj</button>
@@ -283,7 +286,7 @@ sa130068
                         <div class=form-group>
                             <label for="#datetimepicker4">Do:</label>
                             <div class='input-group date' id='datetimepicker4'>
-                                <input name="endDate" id="datetimepicker4-input" type='text' class="form-control" />
+                                <input name="endDate" id="datetimepicker4" type='text' class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -293,7 +296,10 @@ sa130068
                             <input name="ongoing" type="checkbox" id="present-checkbox-2">
                             <label id="present-label" for="#present-checkbox-2">Još traje</label>  	
                         </div>
-
+                        <div class="form-group">
+                            <label for="#description">Opis:</label>
+                            <textarea id="description" name="description"></textarea>
+                        </div>
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Sačuvaj</button>
@@ -609,7 +615,7 @@ sa130068
 
                     if ($loggedIn && $profileID == $_SESSION['userID']):
                         ?>
-                            <a href="<?php echo site_url()."/user/removeDucation/".$skola['idObrazovanje']; ?>"><div class="glyphicon glyphicon-remove"></div></a>
+                            <a href="<?php echo site_url()."/user/removeEducation/".$skola['idObrazovanje']; ?>"><div class="glyphicon glyphicon-remove"></div></a>
                         <?php
                     endif;
 
@@ -668,7 +674,7 @@ sa130068
     ?>
         <div class="reviews col-xs-12">
             <?php
-            if ($loggedIn):
+            if ($loggedIn && !$ocenio):
                 ?>
                 <form method="post" action="<?php echo site_url()."/user/rate/".$profileID; ?>">
                     <div class="row"><input id="7-xs" name="rating" class="rating rating-loading"  value="3" data-min="0" data-max="5" data-step="0.5" data-display-only="false" data-size="xs"></input></div>
@@ -680,13 +686,14 @@ sa130068
                 <?php
             endif;
         endif;
-        if (sizeof($ratings) == 0):   
+        if (sizeof($ratings) == 0):
         else:
             foreach ($ratings as $rating):?>
                 <div class="review-item-profile">
-                <div class="row"><input id="input-7-xs" name="input-7" class="rating rating-loading"  value="<?php echo $rating['ocena'];?>" data-min="0" data-max="5" data-step="0.5" data-display-only="true" data-size="xs"></input></div>
-		
-                
+                <div class="row">
+                    <input id="input-7-xs" name="input-7" class="rating rating-loading"  value="<?php echo $rating['ocena'];?>" data-min="0" data-max="5" data-step="0.5" data-display-only="true" data-size="xs">
+                    </input>
+                </div>
                 
                 <div class="row"><p><?php echo $rating['text'];?></p></div>
                 <div class="row"><div class="profile-reviewer"><?php echo $rating['ocenjivac']; ?></div>
@@ -696,6 +703,7 @@ sa130068
         endif;
         ?>
         </div>
+            </div>
     <?php
         endif;
         ?>
@@ -732,8 +740,8 @@ $(function() {
         $("#datetimepicker3").on("dp.change", function (e) {
             $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
         });
-        $("#datetimepicker3").on("dp.change", function (e) {
-            $('#datetimepicker4').data("DateTimePicker").maxDate(e.date);
+        $("#datetimepicker4").on("dp.change", function (e) {
+            $('#datetimepicker3').data("DateTimePicker").maxDate(e.date);
         });
 });
 </script>

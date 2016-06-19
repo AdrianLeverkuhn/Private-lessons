@@ -7,7 +7,7 @@ sa130068
 <div class="col-sm-5 col-sm-offset-1 student-register">
 
 <form id="student-form" role="form" action="<?php echo site_url("home/attemptReister"); ?>" method="post">
-	<div class="form-group has-error">
+	<div class="form-group">
 			<label class="control-label" for="student-nick">Nadimak</label>
 			<input  class="form-control" name="nick" id="student-nick"/>
 			<?php
@@ -17,19 +17,19 @@ sa130068
                         ?>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
 		<label for="student-email">E-mail</label>
 		<input type="email" name="email" class="form-control" id="student-email" placeholder="email@email.com">
                 <?php
                 if (($failed & TUTOR) == 0 && ($failed & EMAILFORMAT) != 0):
-                    echo '<div class="error-message">Email ju pogrešnom formatu</div>';
+                    echo '<div class="error-message">Email je u pogrešnom formatu</div>';
                 elseif (($failed & TUTOR) == 0 && ($failed & EMAIL) != 0):
                     echo '<div class="error-message">Email je već zauzet</div>';
                 endif;
                 ?>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
 		<label for="student-password">Lozinka</label>
 		<input type="password" name="pass" class="form-control" id="student-password">
                 <?php
@@ -39,7 +39,7 @@ sa130068
                 ?>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
 		<label for="student-password-confirm">Ponovljena lozinka</label>
 		<input type="password" name="pass2" class="form-control" id="student-password-confirm">
                 <?php
@@ -55,7 +55,7 @@ sa130068
 
 <div class="col-sm-5 tutor-register">
 <form role="form" id="tutor-form" action="<?php echo site_url("home/attemptReister"); ?>" method="post">
-	<div class="form-group has-error">
+	<div class="form-group">
                 <?php
                 if(($failed & TUTOR) != 0 && ($failed & REALNAME) != 0):
                     echo '<div class="error-message">Imena smeju da sadrže samo slova</div>';
@@ -65,7 +65,7 @@ sa130068
 		<input class="form-control" name="ime" id="tutor-name" placeholder="Petar" required>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
                 <?php
                 if(($failed & TUTOR) != 0 && ($failed & REALNAME) != 0):
                     echo '<div class="error-message">Imena smeju da sadrže samo slova</div>';
@@ -75,19 +75,19 @@ sa130068
 		<input class="form-control" name="prezime" id="tutor-name" placeholder="Petrovic" required>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
 		<label for="email">E-mail</label>
 		<input type="email" name="email" class="form-control" id="tutor-email" placeholder="email@email.com" required>
                 <?php
                 if (($failed & TUTOR) != 0 && ($failed & EMAILFORMAT) != 0):
-                    echo '<div class="error-message">Email ju pogrešnom formatu</div>';
+                    echo '<div class="error-message">Email je u pogrešnom formatu</div>';
                 elseif (($failed & TUTOR) != 0 && ($failed & EMAIL) != 0):
                     echo '<div class="error-message">Email je već zauzet</div>';
                 endif;
                 ?>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
 		<label for="password">Lozinka</label>
 		<input type="password" name="pass" class="form-control" id="tutor-password" minlength="8" required>
 		<?php
@@ -97,12 +97,12 @@ sa130068
                 ?>
 	</div>
 
-	<div class="form-group has-error">
+	<div class="form-group">
 		<label for="password-confirm">Ponovljena lozinka</label>
 		<input type="password" name="pass2" class="form-control" id="tutor-password-confirm" minlength="8"  required>
 		<?php
                 if(($failed & TUTOR) != 0 && ($failed & PASSWORDMATCH) != 0):
-                    echo '<div class="error-message">Lozinke se ne podudaraju</div>';
+                    echo '<div class="error-message">Lozinke se podudaraju</div>';
                 endif;
                 ?>
 	</div>
@@ -125,7 +125,7 @@ sa130068
                 endif;
                 ?>
 		<label for="tutor-phone">Telefon</label>
-		<input type="number" class="form-control" id="tutor-phone" name="tutor-phone">
+		<input type="number" class="form-control" id="tutor-phone" name="phone">
 	</div>
 
 	<button type="submit" name="submit" value="tutor" class="btn btn-lg btn-primary">Postani predavač</button>

@@ -51,7 +51,7 @@ sa130068
 				<!-- Deo menija za pretragu -->
 				<div class="row collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 
-						<form id="searchForm" action="<?php echo site_url()."/search"; ?>" method ="post" class="form-inline">
+						<form id="searchForm" action="<?php echo site_url()."/search"; ?>" method ="get" class="form-inline">
 
 							<div class="form-group col-sm-5 col-md-7">
 								<label class="sr-only" for="searchBoxMain">Traži</label>

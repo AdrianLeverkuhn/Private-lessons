@@ -19,7 +19,7 @@ sa130068
           <div class="container">
             <div class="carousel-caption">
               <h1>Privatni časovi iz engleskog A1-C2<br/>Spremanje za CAE, CPE, TOEFL, IELTS</h1>
-              <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Saznaj više</a></p>-->
+              <p><a class="btn btn-lg btn-primary" href="<?php echo base_url(); ?>index.php/search?subject=3&discipline=14" role="button">Saznaj više</a></p>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@ sa130068
           <div class="container">
             <div class="carousel-caption">
               <h1>Škola gitare za početnike</h1>
-              <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Saznaj više</a></p>-->
+              <p><a class="btn btn-lg btn-primary" href="<?php echo base_url(); ?>index.php/search?subject=4&discipline=18" role="button">Saznaj više</a></p>
             </div>
           </div>
         </div>
@@ -41,16 +41,17 @@ sa130068
 <div class="row"><h2 class="center-block">Preporučeni predavači</h2></div>
 	<div class="row">
 		<?php
+                //print_r($results);
 			if (isset($results[0])):	
 		?>
 
 		<div class="col-sm-4">
-		<a class="link-tutor" href="<?php echo site_url()."/user/profile/".$results['idTutor']; ?>">
-			<img  src="<?php echo $results[0]['slika']; ?>" class="tut-image img-rounded img-responsive center-block" />
+		<a class="link-tutor" href="<?php echo site_url()."/user/profile/".$results[0]['idTutor']; ?>">
+			<img width="300px" height="300px" src="<?php echo $results[0]['slika']; ?>" class="tut-image img-rounded img-responsive center-block" />
 		
-			<div class="grade">
+			<div style="font-size:14px;" class="grade">
 			<div class="grade-name"><?php echo $results[0]['ime']; ?></div>
-				<div class="grade-stars"<!--<?php echo $results[0]['ukupnaOcena']; ?>-->>
+				<div class="grade-stars"<?php echo $results[0]['ukupnaOcena']; ?>>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
@@ -65,12 +66,12 @@ sa130068
 		if(isset($results[1])):
 		?>
 		<div class="col-sm-4">
-		<a class="link-tutor" href="<?php echo site_url()."/user/profile/".$results['idTutor']; ?>">
-			<img  src="<?php echo $results[1]['slika']; ?>" class="tut-image img-rounded img-responsive center-block" />
+		<a class="link-tutor" href="<?php echo site_url()."/user/profile/".$results[1]['idTutor']; ?>">
+			<img width="300px" height="300px" src="<?php echo $results[1]['slika']; ?>" class="tut-image img-rounded img-responsive center-block" />
 		
-			<div class="grade">
+			<div style="font-size:14px;" class="grade">
 			<div class="grade-name"><?php echo $results[1]['ime']; ?></div>
-				<div class="grade-stars"<!--<?php echo $results[1]['ukupnaOcena']; ?>-->>
+				<div class="grade-stars"<?php echo $results[1]['ukupnaOcena']; ?>>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
@@ -85,18 +86,19 @@ sa130068
 		if(isset($results[2])):
 		?>
 		<div class="col-sm-4">
-		<a class="link-tutor" href="<?php echo site_url()."/user/profile/".$results['idTutor']; ?>">
-			<img  src="<?php echo $results[2]['slika']; ?>" class="tut-image img-rounded img-responsive center-block" />
+		<a class="link-tutor" href="<?php echo site_url()."/user/profile/".$results[2]['idTutor']; ?>">
+			<img width="300px" height="300px" src="<?php echo $results[2]['slika']; ?>" class="tut-image img-rounded img-responsive center-block" />
 		
-			<div class="grade">
-			<div class="grade-name"><?php echo $results[2]['ime']; ?></div>
-				<div class="grade-stars"<!--<?php echo $results[2]['ukupnaOcena']; ?>-->>
+			<div style="font-size:14px;" class="grade">
+			<div  class="grade-name"><?php echo $results[2]['ime']; ?></div>
+				<div class="grade-stars"<?php echo $results[2]['ukupnaOcena']; ?>>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
 					<span class="glyphicon glyphicon-star"></span>
 				</div>
+                        <div class="my-rating">
 			</div>
 			</a>
 		</div>
@@ -165,69 +167,20 @@ sa130068
 </div>
 -->
 <div class="callToActionSection container">
-
+        <?php
+        if(!isset($_SESSION['userID'])):?>
 	<div class="tutor-call">
 		<h3>Držiš privatne časove?</h3>
 		<p>Mi ćemo ti pomoći da preneseš svoje znanje</p>
-		<button  type="submit" class="btn btn-primary btn-lg">Postani predavač</button>
+		<a href="<?php echo site_url()."/home/register"; ?>" class="btn btn-primary btn-lg">Postani predavač</a>
 	</div>
-
+        <?php endif;?>
 	<div class="student-call">
 		<h3>Tražiš predavača?</h3>
 		<p>Časovi matematike, engleskog, gitare, programiranja...</p>
-		<button  type="submit" class="btn btn-default btn-lg">Nađi predavača</button>
+		<a href="<?php echo site_url()."/search"; ?>" type="submit" class="btn btn-default btn-lg">Nađi predavača</a>
 	</div>
 </div>
-
-<footer class="container">
-
-	<div class="col-sm-3"> 
-		<ul>
-		 	<li><h3>O nama</h3></li>
-		 	<li><a href="#">Ko smo mi</a></li>
-		 	<li><a href="#">Oglašavanje</a></li>
-		 	<li><a href="#">FAQ</a></li>
-		 	<li><a href="#">Kontakt</a></li>
-		 	<li><a href="#">Privatnost podataka</a></li>
-		 	<li><a href="#">Uslovi korišćenja</a></li>
-		 </ul>
-	 </div>
-
-
-	<div class="col-sm-3">
-		<ul>
-		 	<li><h3>Privatni časovi</h3></li>
-		 	<li><a href="#">Nađi profesora</a></li>
-		 	<li><a href="#">Postani predavač</a></li>
-		 	<li><a href="#">Registruj se</a></li>
-		 </ul>
-	</div>
-
-	<div class="col-sm-3">
-		<ul>
-		 	<li><h3>Predmeti</h3></li>
-		 	<li><a href="#">Matematika</a></li>
-		 	<li><a href="#">Fizika</a></li>
-		 	<li><a href="#">Hemija</a></li>
-		 	<li><a href="#">Programiranje</a></li>
-		 	<li><a href="#">Engleski jezik</a></li>
-		 	<li><a href="#">Još predmeta...</a></li>
-		 </ul>	
-	</div>
-
-	<div class="col-sm-3">
-			<ul>
-		 	<li><h3>Škole</h3></li>
-		 	<li><a href="#">Osnovna škola</a></li>
-		 	<li><a href="#">Srednja škola</a></li>
-		 	<li><a href="#">ETF</a></li>
-		 	<li><a href="#">MATF</a></li>
-		 	<li><a href="#">FON</a></li>
-		 	<li><a href="#">FTN</a></li>
-		 	<li><a href="#">Još škola...</a></li>
-		 </ul>
-	</div>
-</footer>
 
 </body>
 </html>
